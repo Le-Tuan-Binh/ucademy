@@ -32,4 +32,56 @@ Would you like to customize the default import alias (@/*)? No / Yes
 What import alias would you like configured? @/*
 ```
 
-In this you just click `yes` and `enter` to finish. After that just waiting to download finish then you are successfully to set up the new NextJs Project.
+In this you just click `yes` and `enter` to finish. After that just waiting to download finish then you are successly to set up the new NextJs
+
+## Structure of NextJs Project
+
+Get started by editing `src/app/`
+
+**favicon.ico**: Typically represents the `favicon for your web application`. A favicon is a `small icon` that `appears in the browser tab`, bookmark bar, and other places to represent your website. It's a crucial part of branding and helps users easily identify and distinguish your website among others.
+
+**global.css**: Used to define `global styles` that apply to the entire application. It's a convenient way to establish consistent styles across different components and pages without needing to import the styles into each individual component.
+
+**layout.tsx**: Typically serves as a `common layout component` that `wraps around other components`, providing a consistent structure and styling across multiple pages.
+
+**page.tsx**: Typically represents a specific page within your application. Each `.tsx` file corresponds to a route in your application, following the file-system based routing convention of Next.js.
+
+## Some of the attribute in NextJs Project
+
+### 1. Metadata
+
+Metadata in a `web application refers to information` about the webpage that is not visible on the page itself but is embedded in the HTML markup. This metadata includes elements such as `title`, `description`, `keywords`, `author`, and `viewport settings`. Metadata plays a `crucial role` in `search engine optimization (SEO)`, `social sharing`, and `accessibility`.
+
+```js
+export const metadata: Metadata = {
+	title: "Ucademy",
+	description:
+		"Explore a wide range of courses on Ucademy and enhance your skills.",
+};
+```
+
+### 2. Google font
+
+#### 2.1 Import a font from Google Font
+
+```js
+import { FontName } from "next/font/google";
+```
+
+#### 2.2 Create a variable of this forn
+
+```js
+const variable = FontName({ subsets: ["latin"] });
+```
+
+#### 2.3 Using font variable in the body of the website
+
+In the layout.tsx, we can use the font variable in the `body` tag with attribute `className` is `{FontName.className}`
+
+```js
+return (
+	<html lang="en">
+		<body className={FontName.className}>{children}</body>
+	</html>
+);
+```
