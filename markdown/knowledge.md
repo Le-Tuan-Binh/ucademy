@@ -55,8 +55,7 @@ Metadata in a `web application refers to information` about the webpage that is 
 ```js
 export const metadata: Metadata = {
 	title: "Ucademy",
-	description:
-		"Explore a wide range of courses on Ucademy and enhance your skills.",
+	description: "Explore a wide range of courses on Ucademy and enhance your skills.",
 };
 ```
 
@@ -76,12 +75,12 @@ const variable = FontName({ subsets: ["latin"] });
 
 #### 2.3 Using font variable in the body of the website
 
-In the layout.tsx, we can use the font variable in the `body` tag with attribute `className` is `{FontName.className}`
+In the `layout.tsx`, we can use the font variable in the `body` tag with attribute `className` is `{FontName.className}`
 
 ```js
 return (
-	<html lang="en">
-		<body className={FontName.className}>{children}</body>
-	</html>
+<html lang="en">
+	<body className={FontName.className}>{children}</body>
+</html>
 );
 ```
