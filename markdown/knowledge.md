@@ -67,7 +67,7 @@ export const metadata: Metadata = {
 import { FontName } from "next/font/google";
 ```
 
-#### 2.2 Create a variable of this forn
+#### 2.2 Create a variable of this font
 
 ```js
 const variable = FontName({ subsets: ["latin"] });
