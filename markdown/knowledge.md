@@ -120,7 +120,7 @@ However, when this situation, your website will not know which font you want to 
 
 Typography plays a crucial role in web design, affecting both aesthetics and readability. One key aspect of typography is font weight, which determines the thickness of the text.
 
-Font weight defines the thickness of the characters in a typeface. It ranges from 100 to 900, where 100 is the thinnest and 900 is the thickest. \
+Font weight defines the thickness of the characters in a typeface. It ranges from 100 to 900, where 100 is the thinnest and 900 is the thickest.
 
 Some of common weights include:
 
