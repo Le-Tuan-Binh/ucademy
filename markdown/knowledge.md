@@ -359,7 +359,7 @@ return (
 
 But we have many font weight for the local font, so we need to modify the declare the variable of local font in the `src/components/font.ts`
 
-```ts
+```js
 const dm_sans = localFont({
 	src: [
 		{
@@ -386,7 +386,7 @@ const dm_sans = localFont({
 
 Now when we use, we will use in the attribute of the tag we want to modify font use with weight and italic or not like the code below in the file `src/app/page.tsx`
 
-```tsx
+```js
 return (
 	<main>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum,
