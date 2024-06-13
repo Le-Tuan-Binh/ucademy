@@ -48,7 +48,7 @@ Get started by editing `src/app/`
 
 ## Some of the attribute and concept in NextJs Project
 
-### 1. Metadata
+### 1. Metadata in NextJS Project
 
 Metadata in a `web application refers to information` about the webpage that is not visible on the page itself but is embedded in the HTML markup. This metadata includes elements such as `title`, `description`, `keywords`, `author`, and `viewport settings`. Metadata plays a `crucial role` in `search engine optimization (SEO)`, `social sharing`, and `accessibility`.
 
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 };
 ```
 
-### 2. Google font
+### 2. Google font in NextJS Project
 
 #### 2.1 Import a font from Google Font
 
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 import { FontName } from "next/font/google";
 ```
 
-Import many fonr from google
+Import many font from google
 
 ```js
 import {FontName, FontName,...} from "next/font/google";'
@@ -124,15 +124,15 @@ Font weight defines the thickness of the characters in a typeface. It ranges fro
 
 Some of common weights include:
 
--   100: Thin
--   200: Extra Light
--   300: Light
--   400: Normal (Regular)
--   500: Medium
--   600: Semi Bold
--   700: Bold
--   800: Extra Bold
--   900: Black
+- 100: Thin
+- 200: Extra Light
+- 300: Light
+- 400: Normal (Regular)
+- 500: Medium
+- 600: Semi Bold
+- 700: Bold
+- 800: Extra Bold
+- 900: Black
 
 You can add some font weight of font you want to use in your website when declare a variable of this font
 
@@ -153,13 +153,13 @@ const roboto = Roboto({
 
 Font subsets are specific parts of a font that contain only the characters necessary for a particular language or group of languages. Common subsets include:
 
--   latin: Basic Latin characters.
--   latin-ext: Extended Latin characters.
--   cyrillic: Cyrillic characters.
--   cyrillic-ext: Extended Cyrillic characters.
--   greek: Greek characters.
--   greek-ext: Extended Greek characters.
--   vietnamese: Vietnamese characters.
+- latin: Basic Latin characters.
+- latin-ext: Extended Latin characters.
+- cyrillic: Cyrillic characters.
+- cyrillic-ext: Extended Cyrillic characters.
+- greek: Greek characters.
+- greek-ext: Extended Greek characters.
+- vietnamese: Vietnamese characters.
 
 Using subsets can significantly reduce the size of the font files that need to be downloaded, leading to faster page loads and better performance, especially for multilingual websites. Loading only the necessary subsets ensures that users get the best experience without unnecessary delays.
 
@@ -213,9 +213,9 @@ export default function Home() {
 	return (
 		<main>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-			earum, eos veritatis laborum rerum iste ea ullam nesciunt,
-			distinctio dolorum animi, doloribus provident accusamus hic. Minus
-			nisi laudantium asperiores ex!
+			earum, eos veritatis laborum rerum iste ea ullam nesciunt, distinctio
+			dolorum animi, doloribus provident accusamus hic. Minus nisi laudantium
+			asperiores ex!
 			<h1 className={`${roboto.className}`}>
 				This is an heading of the website
 			</h1>
@@ -242,9 +242,7 @@ Now when you want to use these font in tag, you need to declare variable in the 
 ```tsx
 return (
 	<html lang="en">
-		<body className={`${manrope.variable} ${roboto.variable}`}>
-			{children}
-		</body>
+		<body className={`${manrope.variable} ${roboto.variable}`}>{children}</body>
 	</html>
 );
 ```
@@ -270,4 +268,134 @@ h5,
 h6 {
 	font-family: var(--font-roboto);
 }
+```
+
+### 3. Tailwind Font in NextJS Project
+
+#### 3.1 Import a font for Tailwind
+
+Open the file `tailwind.config.ts` to modify the font in the tailwind config, first you need to clear the default config in the tag `extend`
+
+```ts
+theme: {
+	extend: {},
+},
+```
+
+Now we will change the font of the tailwind by add the tag fontFamily and choose the primary and secondary font for the project.
+
+```ts
+theme: {
+	extend: {
+		fontFamily: {
+			primary: ["var(--font-manrope)"],
+			secondary: ["var(--font-roboto)"],
+		},
+	},
+},
+```
+
+#### 3.2 Using font in Tailwind CSS
+
+Now we can use in the body and tag HTML with font by tailwind syntax like the code below, we will set the font of the body tag is font-primary in the config of tailwind config.
+
+```tsx
+return (
+	<html lang="en">
+		<body className={`${manrope.variable} ${roboto.variable} font-primary`}>
+			{children}
+		</body>
+	</html>
+);
+```
+
+If you want to set the another font by tailwind with the tag you can use the syntax html like below in `page.tsx`, it set the font of h1 use the font-secondary in the config of tailwind.
+
+The paragraph is use the font of the body in `layout.tsx` and the `h1` is use the custom font in `className` tag with the `secondary font` of the tailwind config.
+
+```tsx
+return (
+	<main>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum,
+		eos veritatis laborum rerum iste ea ullam nesciunt, distinctio dolorum
+		animi, doloribus provident accusamus hic. Minus nisi laudantium asperiores
+		ex!
+		<h1 className="font-secondary">This is an heading of the website</h1>
+	</main>
+);
+```
+
+### 4. Using the local font in project
+
+First you need to have the font file with the type of file is `.tff`. After that, you will copy it into the folder `./src/app` to use the local font.
+
+Now go to the folder `src/components/` and open the file `font.ts` to modify using the local font of the project.
+
+First you need import the library to use the local font
+
+```ts
+import localFont from "next/font/local";
+```
+
+Now we will declare the variable for the local font by the code below
+
+```ts
+const dm_sans = localFont({
+	src: "../app/DMSans-Regular.ttf",
+	display: "swap",
+});
+export { manrope, roboto, dm_sans };
+```
+
+You need to setup to use in your project of the body tag in the `layout.tsx` file to set up for the body of the layout project.
+
+```tsx
+return (
+	<html lang="en">
+		<body className={dm_sans.className}>{children}</body>
+	</html>
+);
+```
+
+But we have many font weight for the local font, so we need to modify the declare the variable of local font in the `src/components/font.ts`
+
+```ts
+const dm_sans = localFont({
+	src: [
+		{
+			path: "../app/DMSans-Regular.ttf",
+			weight: "400",
+		},
+		{
+			path: "../app/DMSans-Meidum.ttf",
+			weight: "500",
+		},
+		{
+			path: "../app/DMSans-Bold.ttf",
+			weight: "700",
+		},
+		{
+			path: "../app/DMSans-Italic.ttf",
+			weight: "400",
+			style: "italic",
+		},
+	],
+	display: "swap",
+});
+```
+
+Now when we use, we will use in the attribute of the tag we want to modify font use with weight and italic or not like the code below in the file `src/app/page.tsx`
+
+```tsx
+return (
+	<main>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum,
+		eos veritatis laborum rerum iste ea ullam nesciunt, distinctio dolorum
+		animi, doloribus provident accusamus hic. Minus nisi laudantium asperiores
+		ex!
+		<h1 className="font-secondary font-medium">
+			This is an heading of the website
+		</h1>
+	</main>
+);
 ```

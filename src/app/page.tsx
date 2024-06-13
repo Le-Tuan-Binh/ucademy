@@ -5,10 +5,10 @@ export default function Home() {
 	return (
 		<main>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-			earum, eos veritatis laborum rerum iste ea ullam nesciunt,
-			distinctio dolorum animi, doloribus provident accusamus hic. Minus
-			nisi laudantium asperiores ex!
-			<h1>
+			earum, eos veritatis laborum rerum iste ea ullam nesciunt, distinctio
+			dolorum animi, doloribus provident accusamus hic. Minus nisi laudantium
+			asperiores ex!
+			<h1 className="font-secondary font-medium">
 				This is an heading of the website
 			</h1>
 		</main>
