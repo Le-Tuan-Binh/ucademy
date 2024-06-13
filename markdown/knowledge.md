@@ -399,3 +399,5 @@ return (
 	</main>
 );
 ```
+
+However, we usually use font in the `layout.tsx` so when we loading any page, it will load all font, it will make the page is loading too slow. So follow by the `NextJs` the best practice is we will create a different file to export font like `font.ts` and when we use in page, we will import to make the page loading more better.
