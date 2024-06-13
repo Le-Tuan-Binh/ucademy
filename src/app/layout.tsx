@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { dm_sans, manrope, roboto } from "@/components/font";
+import { manrope } from "@/utils";
 
 export const metadata: Metadata = {
 	title: "Ucademy",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={dm_sans.className}>{children}</body>
+			<body className={manrope.className}>{children}</body>
 		</html>
 	);
 }
