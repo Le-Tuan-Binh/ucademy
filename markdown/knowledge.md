@@ -408,4 +408,6 @@ In Next.js, the concept of `routing` and `navigation` is handled using the `Link
 
 Some of props we usually use in `Link` tag which is have the function to working alternative `a` tag in HTML
 
-`**href**`: This prop specifies the URL or path the link should navigate to within your Next.js application.expand_more. It's essential for defining the target of the link. You can use absolute paths (starting with a slash /) for internal routes or relative paths for linking within the same directory.
+**`href`**: This prop specifies the URL or path the link should navigate to within your Next.js application.expand_more. It's essential for defining the target of the link. You can use absolute paths (starting with a slash /) for internal routes or relative paths for linking within the same directory.
+
+
