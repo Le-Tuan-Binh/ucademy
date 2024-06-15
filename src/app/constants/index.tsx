@@ -12,7 +12,7 @@ export const menuItems: {
 		icon: <IconPlayCircle className="size-5" />,
 	},
 	{
-		url: "/",
+		url: "/explore",
 		title: "Khám phá",
 		icon: <IconExplore className="size-5" />,
 	},

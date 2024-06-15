@@ -102,7 +102,7 @@ return (
 );
 ```
 
-You also can you many font variable in your `layout.tsx` by modify the body tag with many font variable in `className` tag.
+You also can use many font variable in your `layout.tsx` by modify the body tag with many font variable in `className` tag.
 
 ```js
 return (
@@ -114,7 +114,7 @@ return (
 );
 ```
 
-However, when this situation, your website will not know which font you want to use default in your website leed to conflict in your website.
+However, when this situation, your website will not know which font you want to use default in your website so leed to conflict in your website.
 
 #### 2.4 Font Weight
 
@@ -403,3 +403,9 @@ return (
 However, we usually use font in the `layout.tsx` so when we loading any page, it will load all font, it will make the page is loading too slow. So follow by the `NextJs` the best practice is we will create a different file to export font like `font.ts` and when we use in page, we will import to make the page loading more better.
 
 ### 5. Next/Link concept in NextJS Project
+
+In Next.js, the concept of `routing` and `navigation` is handled using the `Link` component from the `next/link` module. This component provides client-side navigation between pages in your Next.js application, ensuring fast transitions without full page reloads.
+
+Some of props we usually use in `Link` tag which is have the function to working alternative `a` tag in HTML
+
+`**href**`: This prop specifies the URL or path the link should navigate to within your Next.js application.expand_more. It's essential for defining the target of the link. You can use absolute paths (starting with a slash /) for internal routes or relative paths for linking within the same directory.
