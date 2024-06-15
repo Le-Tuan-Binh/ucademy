@@ -439,7 +439,9 @@ When the static page with url path display in viewport, the `Link` with the attr
 
 ### 6. Some of hook important in NextJS
 
-**[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**: It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
+#### 6.1 **[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**
+
+It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
 
 ### 7. Error Best Practice
 
