@@ -12,9 +12,10 @@ const SideBar = () => {
 	return (
 		<div className="p-5 border-r border-r-gray-200">
 			<a href="/" className="font-bold text-3xl inline-block mb-5">
-				Ucademy
+				<span className="text-primary">U</span>
+				cademy
 			</a>
-			<ul className="flex flex-col gap-2">
+			<ul className="flex flex-col gap-3">
 				{menuItems.map((item, index) => (
 					<MenuItem
 						key={index}
