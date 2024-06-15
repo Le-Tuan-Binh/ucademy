@@ -3,15 +3,14 @@ Syntax for Creates a React Arrow Function Components: `rafce`
 */
 
 import React from "react";
-import IconPlayCircle from "../icons/IconPlayCircle";
-import IconExplore from "../icons/IconExplore";
 import { menuItems } from "@/app/constants";
-import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ActiveLink from "../common/ActiveLink";
 
 const SideBar = () => {
 	return (
 		<div className="p-5 border-r border-r-gray-200">
-			<a href="/" className="font-bold text-3xl inline-block mb-5">
+			<a href="/" className="font-bold text-3xl inline-block mb-10">
 				<span className="text-primary">U</span>
 				cademy
 			</a>
@@ -40,13 +39,10 @@ function MenuItem({
 }) {
 	return (
 		<li>
-			<Link
-				href={url}
-				className="p-3 rounded-md flex items-center gap-3 hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all"
-			>
+			<ActiveLink url={url}>
 				{icon}
 				{title}
-			</Link>
+			</ActiveLink>
 		</li>
 	);
 }

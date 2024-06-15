@@ -1,5 +1,4 @@
-import IconExplore from "@/components/icons/IconExplore";
-import IconPlayCircle from "@/components/icons/IconPlayCircle";
+import { IconExplore, IconPlayCircle } from "@/components/icons";
 
 export const menuItems: {
 	url: string;

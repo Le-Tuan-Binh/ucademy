@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.svg-animate {
+		stroke-dashoffset: 1000;
+		stroke-dasharray: 1000;
+		animation: dash 10s linear forwards;
+	}
+	@keyframes dash {
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+}
