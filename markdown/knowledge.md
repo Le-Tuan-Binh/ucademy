@@ -199,8 +199,7 @@ import { manrope, roboto } from "@/components/font";
 You can see the location of import is begin with `@` and it look to very simple and easy to manage. It is the config in the `tsconfig.json` file in the attribute `path`
 
 ```json
-"paths": {
-	"@/*": ["./src/*"]
+"paths": {"@/*": ["./src/*"]
 }
 ```
 
