@@ -408,18 +408,18 @@ In Next.js, the concept of `routing` and `navigation` is handled using the `Link
 
 Some of props we usually use in `Link` tag which is have the function to working alternative `a` tag in HTML
 
-**Good to know:**: <a> tag attributes such as className or `target="\_blank"` can be added to <Link> as props and will be passed to the underlying a element.
+**Good to know:**: `<a>` tag attributes such as className or `target="\_blank"` can be added to `<Link>` as props and will be passed to the underlying a element.
 
 **`href`**: This prop is `required` use to specifies the URL or path the link should navigate to within your Next.js application.expand_more. It's essential for defining the target of the link. You can use absolute paths (starting with a slash /) for internal routes or relative paths for linking within the same directory.
 
 **`replace`**: This is an boolean props with two value `true` and `false`. By default, clicking a Link performs a normal client-side navigation, pushing a new history entry. Setting replace to `true` replaces the current entry in the history stack instead, creating a "one-way" navigation.
 
-**`scroll`**: Defaults to true. The default behavior of <Link> is to scroll to the top of a new route or to maintain the scroll position for backwards and forwards navigation. When false, next/link will not scroll to the top of the page after a navigation.
+**`scroll`**: Defaults to true. The default behavior of `<Link>` is to scroll to the top of a new route or to maintain the scroll position for backwards and forwards navigation. When `false`, next/link will not `scroll to the top of the page after a navigation.`
 
-**`prefetch`**: Prefetching happens when a <Link /> component enters the user's viewport (initially or through scroll). Next.js prefetches and loads the linked route (denoted by the href) and data in the background to improve the performance of client-side navigations.
+**`prefetch`**: Prefetching happens when a `<Link />` component enters the user's viewport (initially or through scroll). Next.js prefetches and loads the linked route (denoted by the href) and data in the background to improve the performance of client-side navigations.
 
 **Prefetching** is only enabled in production. Here are some value of `prefetching`
 
-- <true (default):> The full route and its data will be prefetched.
+- true (default): The full route and its data will be prefetched.
 
-- <false>: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an <a> tag or incrementally adopting the App Router, which enables disabling prefetching on hover too.
+- false: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an `a` tag or incrementally adopting the App Router, which enables disabling prefetching on hover too.
