@@ -435,6 +435,7 @@ We can use an object like the code below, or use string like `href={`${url}?page
 It only working in environment production. It means only working when you deploy into the website and server.
 
 When the static page with url path display in viewport, the `Link` with the attribute `Prefetching` will be loads the `linked route (denoted by the href)` and data in the background to improve the performance of client-side navigations.
+
 When the static page with url path display in viewport, the `Link` with the attribute `Prefetching` will be loads the `linked route (denoted by the href)` and data in the background to improve the performance of client-side navigations.
 
 ### 6. Some of hook important in NextJS
@@ -443,8 +444,16 @@ When the static page with url path display in viewport, the `Link` with the attr
 
 It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
 
+#### 6.2 **[index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)**
+
+In TypeScript, .d.ts files, also known as declaration files, are used to provide type information about JavaScript code. They help TypeScript understand the types of variables, functions, classes, and other entities in your code, even when the actual implementation is written in plain JavaScript. This is especially useful for libraries and modules that are not written in TypeScript but are used in TypeScript projects.
+
+When running next dev or next build, Next.js generates a hidden .d.ts file inside .next that contains information about all existing routes in your application (all valid routes as the href type of Link). This .d.ts file is included in tsconfig.json and the TypeScript compiler will check that .d.ts and provide feedback in your editor about invalid links.
+
 ### 7. Error Best Practice
 
+```bash
 You're importing a component that needs `usePathname`. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+```
 
 This is an error that the component use hook `usePathname` of nextjs is only run at the environment Client so you need to declare `"use client"` in the head of the file.

@@ -3,9 +3,10 @@ Syntax for Creates a React Arrow Function Components: `rafce`
 */
 
 import React from "react";
-import { menuItems } from "@/app/constants";
+import { menuItems } from "@/constants";
 import { usePathname } from "next/navigation";
 import ActiveLink from "../common/ActiveLink";
+import { TMenuItem } from "@/types";
 
 const SideBar = () => {
 	return (
@@ -28,15 +29,7 @@ const SideBar = () => {
 	);
 };
 
-function MenuItem({
-	url = "/",
-	title = "",
-	icon,
-}: {
-	url: string;
-	title: string;
-	icon?: React.ReactNode;
-}) {
+function MenuItem({ url = "/", title = "", icon }: TMenuItem) {
 	return (
 		<li>
 			<ActiveLink url={url}>
