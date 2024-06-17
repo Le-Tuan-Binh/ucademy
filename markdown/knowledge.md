@@ -438,7 +438,34 @@ When the static page with url path display in viewport, the `Link` with the attr
 
 When the static page with url path display in viewport, the `Link` with the attribute `Prefetching` will be loads the `linked route (denoted by the href)` and data in the background to improve the performance of client-side navigations.
 
-### 6. Some of hook important in NextJS
+### 6. Next/Routing concept in NextJS Project
+
+To getting started with the routing in the NextJs Project, we are begin with some structure of the `Routing` in the NextJS Concept
+
+#### 6.1 Folder Routing
+
+The folder contain the file `page.tsx` will have the layout in the browser, it create the url path is `/folder_name`.
+
+For example this is your folder structure
+
+```bash
+app/
+├── about/
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+In this example we will have some of url path create by the NextJs Application
+
+- `/about` -> It will open the layout from file `page.tsx` in folder `/app/about`
+
+- `/contact` -> It will open the layout from file `page.tsx` in folder `/app/contact`
+
+Note that, in folder need to have `page.tsx`. If not it can not create the layout and display the alternative url path.
+
+### 7. Some of hook important in NextJS
 
 #### 6.1 **[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**
 
@@ -450,7 +477,7 @@ In TypeScript, .d.ts files, also known as declaration files, are used to provide
 
 When running next dev or next build, Next.js generates a hidden .d.ts file inside .next that contains information about all existing routes in your application (all valid routes as the href type of Link). This .d.ts file is included in tsconfig.json and the TypeScript compiler will check that .d.ts and provide feedback in your editor about invalid links.
 
-### 7. Error Best Practice
+### 8. Error Best Practice
 
 ```bash
 You're importing a component that needs `usePathname`. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
