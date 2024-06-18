@@ -465,7 +465,7 @@ In this example we will have some of url path create by the NextJs Application
 
 Note that, in folder need to have `page.tsx`. If not it can not create the layout and display the alternative url path.
 
-#### 6.2 Segment and Dynamic Segment and Catch-all Segments
+#### 6.2 Segment and Dynamic Segment
 
 **Segment**: A segment is a part of a URL path that helps to define a specific route. In Next.js, segments are typically represented by directories and files within the pages directory. Each file or directory inside pages maps to a corresponding route.
 
@@ -485,6 +485,8 @@ app/
 So now when you go the the url path `/about/` or `/contact` it will direct to use the `page.tsx` in the folder `about` and `contact` alternative.
 
 **Dynamic segments** let you create dynamic pages based on the value of a part of the URL. In Next.js, you create a dynamic segment by using `square brackets []` in the file name within the pages directory.
+
+We usually use it for get the params to dealing or handling something like get the data from the database to display the result to the user or get the value alternative for the value of the params.
 
 The name of the folder segment dynamic will follow the structure: `[dynamic_segment_name]`
 
@@ -514,21 +516,50 @@ app/
 └── index.tsx
 ```
 
-### 7. Params and Search Params
+#### 6.3. Nested Routes
 
-### 8. Some of hook important in NextJS
+Next.js makes it easy to define nested routes using a folder-based structure. Each folder within the pages directory can contain subfolders and files, creating nested routes automatically. This helps in organizing your application and creating a clear, intuitive URL structure.
 
-#### 8.1 **[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**
+```bash
+app/
+├── course/
+│   ├── lesson/
+│   │   └── page.tsx
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+This is an example of nested route in nextjs, when you goto the url path `/course/lesson` it will display and render the file `page.tsx`
+
+#### 6.4. Group Concept in NextJs
+
+The Group Concept in Next.js is used to `organize routes without creating an actual URL path`. This feature helps in structuring your project files logically without affecting the URL structure.
+
+You create a Group by using `round brackets ()` in the file name within the pages directory. The name of the folder of group will follow the structure: `(group_name)`
+
+It use for group the rounting are have relevant into one group to easy management and edit for the feature.
+
+#### 6.5 Catch-all Segments and Optional Catch-all Segments
+
+
+
+### 9. Params and Search Params
+
+### 10. Some of hook important in NextJS
+
+#### 10.1 [usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)
 
 It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
 
-#### 8.2 **[index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)**
+#### 10.2 [index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)
 
 In TypeScript, .d.ts files, also known as declaration files, are used to provide type information about JavaScript code. They help TypeScript understand the types of variables, functions, classes, and other entities in your code, even when the actual implementation is written in plain JavaScript. This is especially useful for libraries and modules that are not written in TypeScript but are used in TypeScript projects.
 
 When running next dev or next build, Next.js generates a hidden .d.ts file inside .next that contains information about all existing routes in your application (all valid routes as the href type of Link). This .d.ts file is included in tsconfig.json and the TypeScript compiler will check that .d.ts and provide feedback in your editor about invalid links.
 
-### 9. Error Best Practice
+### 11. Error Best Practice
 
 ```bash
 You're importing a component that needs `usePathname`. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
