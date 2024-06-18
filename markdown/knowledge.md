@@ -465,19 +465,70 @@ In this example we will have some of url path create by the NextJs Application
 
 Note that, in folder need to have `page.tsx`. If not it can not create the layout and display the alternative url path.
 
-### 7. Some of hook important in NextJS
+#### 6.2 Segment and Dynamic Segment and Catch-all Segments
 
-#### 6.1 **[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**
+**Segment**: A segment is a part of a URL path that helps to define a specific route. In Next.js, segments are typically represented by directories and files within the pages directory. Each file or directory inside pages maps to a corresponding route.
+
+The name of the folder of segment will follow the structure: `segment_name`
+
+For example: If you want to create an url path for the about page of you, you may only need the static and the value of url path for this page will not change so you can create the structure of your folder like below
+
+```bash
+app/
+├── about/
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+So now when you go the the url path `/about/` or `/contact` it will direct to use the `page.tsx` in the folder `about` and `contact` alternative.
+
+**Dynamic segments** let you create dynamic pages based on the value of a part of the URL. In Next.js, you create a dynamic segment by using `square brackets []` in the file name within the pages directory.
+
+The name of the folder segment dynamic will follow the structure: `[dynamic_segment_name]`
+
+For example: If you want to create an url path for the detail page for course, you may also have many course with different name so the value of the url path is always change. So you can create your folder like below
+
+```bash
+app/
+├── [course]/
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+So now when you go the the url path `/vscode-master/` or `/nextjs-pro` it will direct to use the `page.tsx` in the folder dynamic segments folder `[course]`
+
+If you want go to the folder children of the `[course]` folder, you can also add a new folder into this, for example if i want have the url path like `/vscode-master/lesson?slug=lesson-01` you can create your structure of the folder like below
+
+```bash
+app/
+├── [course]/
+│   ├── lesson/
+│   │   └── page.tsx
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+### 7. Params and Search Params
+
+### 8. Some of hook important in NextJS
+
+#### 8.1 **[usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)**
 
 It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
 
-#### 6.2 **[index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)**
+#### 8.2 **[index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)**
 
 In TypeScript, .d.ts files, also known as declaration files, are used to provide type information about JavaScript code. They help TypeScript understand the types of variables, functions, classes, and other entities in your code, even when the actual implementation is written in plain JavaScript. This is especially useful for libraries and modules that are not written in TypeScript but are used in TypeScript projects.
 
 When running next dev or next build, Next.js generates a hidden .d.ts file inside .next that contains information about all existing routes in your application (all valid routes as the href type of Link). This .d.ts file is included in tsconfig.json and the TypeScript compiler will check that .d.ts and provide feedback in your editor about invalid links.
 
-### 8. Error Best Practice
+### 9. Error Best Practice
 
 ```bash
 You're importing a component that needs `usePathname`. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
