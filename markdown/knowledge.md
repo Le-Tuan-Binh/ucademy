@@ -543,9 +543,52 @@ It use for group the rounting are have relevant into one group to easy managemen
 
 #### 6.5 Catch-all Segments and Optional Catch-all Segments
 
+Next.js offers powerful routing capabilities out of the box, allowing developers to create dynamic routes with ease. Among these capabilities are catch-all and optional catch-all segments, which provide a flexible way to handle dynamic URL patterns.
 
+Catch-all segments allow you to capture all remaining parts of a URL in a single dynamic route. This is useful for scenarios where you need to handle varying lengths of URL paths under a common base path.
 
-### 9. Params and Search Params
+Catch-all and optional catch-all segments in Next.js provide developers with powerful tools to create flexible and dynamic routing structures. By capturing varying URL segments and handling them in a structured manner, you can build scalable and maintainable applications.
+
+Optional catch-all segments extend the concept of catch-all segments by also matching the base path without any additional segments. This provides even greater flexibility in routing.
+
+`Catch-all segments (/src/app/name/[...<name>].js)`: Capture all segments following a base path and provide them as an array.
+`Optional catch-all segments (/src/app/[[...<name>]].js)`: Capture all segments following a base path and also match the base path itself.
+
+**Catch-all segments**
+
+When you use `Catch-all segments (/src/app/name/[...<name>].js)`, for example if you have the folder like below
+
+```bash
+app/
+├── course/
+│   ├── [...course]/
+│   │   └── page.tsx
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+When you have the structure like this, you can going to the url path like `/course/param_1` or `course/param_2` or `course/param_1/param_2` and many many url path begin with `/course` and the number of params or search params is `not limi`t but `need at least one`. However, if you trying to access the url `/course` without the other params it will `NOT FOUND`.
+
+**Optional catch-all segments**
+
+When you use `Optional catch-all segments (/src/app/name/[[...<name>]].js)`, for example if you have the folder like below
+
+```bash
+app/
+├── course/
+│   ├── [[...course]]/
+│   │   └── page.tsx
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
+When you have the structure like this, you can going to the url path like `/course/param_1` or `course/param_2` or `course/param_1/param_2` and many many url path begin with `/course` and the number of params or search params is `not limit` and `not required at least one`. So when you try to access the url path `/course` it still working.
+
+#### 6.6. Params and Search Params
 
 ### 10. Some of hook important in NextJS
 
