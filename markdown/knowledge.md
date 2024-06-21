@@ -516,6 +516,23 @@ app/
 └── index.tsx
 ```
 
+**Note**: In each folder can only have one dynamic segment folder. If you have more one dynamic segment folder it will error that because, it can not know when access to the url path which dynamic segment folder need to render to user.
+
+For example error like the structure below is not accepted in NextJS
+
+```bash
+app/
+├── [course]/
+│   ├── [lesson_one]/
+│   │   └── page.tsx
+│   ├── [lesson_two]/
+│   │   └── page.tsx
+│   └── page.tsx
+├── contact/
+│   └── page.tsx
+└── index.tsx
+```
+
 #### 6.3. Nested Routes
 
 Next.js makes it easy to define nested routes using a folder-based structure. Each folder within the pages directory can contain subfolders and files, creating nested routes automatically. This helps in organizing your application and creating a clear, intuitive URL structure.
@@ -588,7 +605,54 @@ app/
 
 When you have the structure like this, you can going to the url path like `/course/param_1` or `course/param_2` or `course/param_1/param_2` and many many url path begin with `/course` and the number of params or search params is `not limit` and `not required at least one`. So when you try to access the url path `/course` it still working.
 
-#### 6.6. Params and Search Params
+### 7. Params and Search Params
+
+In modern web development, managing URL parameters effectively can greatly enhance the functionality and user experience of your application. Next.js provides robust support for handling both dynamic URL params and search params, allowing developers to build dynamic, interactive, and highly responsive applications.
+
+**URL parameters** (also known as route parameters or path parameters) are part of the URL path itself and are typically used to identify specific resources.
+
+For example, in the url path `/course/java`, `java` is a URL parameter representing the course name.
+
+**Search parameters**(also known as query parameters) are the key-value pairs added to the end of a URL `after a question mark (?)`. They are often used for filtering, searching, and passing additional data without altering the URL path structure.
+
+For example, in the url path `/course/java?slug=lesson-01`, `slug=lesson-01` is a search parameters representing for the name of the lesson of the coures.
+
+Now you see the structure of folder below
+
+```bash
+app/
+├── (dashboard)/
+│   ├── [item]/
+│   │   └── [content]/
+│   │       └── [user]/
+│   │           └── account/
+│   │               └── page.tsx
+│
+└── index.tsx
+```
+
+Now you can see in the structure above, we have many dynamic segment folder, begin with `[item]` and now when we going to the url path like `/html-css/background/tbin/account?name=tbin`
+
+The code in `page.tsx` in the `account` folder will like below
+
+```ts
+import React from "react";
+
+const page = ({ params, searchParams }: { params: any; searchParams: any }) => {
+	console.log("Params: " + params);
+	console.log("Search Params: " + searchParams);
+	return <div>Lesson Of Course</div>;
+};
+
+export default page;
+```
+
+In the server side, we can see the value of the `page.tsx` in the console
+
+```bash
+Params: {item: 'html-css', content: 'background', user: 'tbin'}
+Search Params: {name: 'tbin'}
+```
 
 ### 10. Some of hook important in NextJS
 
