@@ -438,7 +438,7 @@ When the static page with url path display in viewport, the `Link` with the attr
 
 When the static page with url path display in viewport, the `Link` with the attribute `Prefetching` will be loads the `linked route (denoted by the href)` and data in the background to improve the performance of client-side navigations.
 
-### 6. Next/Routing concept in NextJS Project
+### 6. NextJs Routing concept in NextJS Project
 
 To getting started with the routing in the NextJs Project, we are begin with some structure of the `Routing` in the NextJS Concept
 
@@ -652,6 +652,71 @@ In the server side, we can see the value of the `page.tsx` in the console
 ```bash
 Params: {item: 'html-css', content: 'background', user: 'tbin'}
 Search Params: {name: 'tbin'}
+```
+
+### 8. NextJs Image Concept in NextJs Project
+
+Next.js provides a powerful Image component that optimizes and enhances the performance of your application by automatically handling image optimization, resizing, and more.
+
+The Next.js Image component includes several optimization features:
+
+- Automatic Resizing: Automatically resizes images based on the specified width and height.
+
+- Lazy Loading: Images are loaded lazily by default, which improves page load performance.
+
+- Responsive Images: Supports responsive images by specifying different sizes for different viewports.
+
+- Quality: Allows setting the quality of the image to balance between performance and visual fidelity.
+
+When using the Image component, there are three required attributes you must provide: src, alt, width, and height.
+
+- `src`: The source of the image. This can be a local path or an external URL.
+
+- `alt`: Alternative text for the image, used for accessibility and SEO.
+
+- `width`: The width of the image in pixels.
+
+- `height`: The height of the image in pixels.
+
+When using `external images`, make sure to add the domain to the `next.config.js` file under the images property. This allows Next.js to optimize and serve the external images.
+
+For example below the config of `next.config.js` to use the image from `Unplash`
+with the url domain is `images.unsplash.com`.
+
+```js
+const nextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+				port: "",
+				pathname: "/**",
+			},
+		],
+	},
+};
+```
+
+However, if you use `fill` attribute, you not need to have `width` and `height` attribute in the Image Link. But now, the Image Link will become to `absolute` so you need to determine that Image Link you want to is `relative` or `absolute` depend on your needed.
+
+For example, you can see the code below is an example of using `fill` instead of `width` and `heigth`.
+
+```tsx
+<Image
+	alt=""
+	src="https://images.unsplash.com/photo-1716881763995-097b7a68ea3d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+	fill
+	className="w-full h-full object-cover rounded"
+/>
+```
+
+### 9. Some of Package Usages in NextJS
+
+#### 9.1 Install `sharp` to Use Built-In Image Optimization
+
+```bash
+npm i sharp
 ```
 
 ### 10. Some of hook important in NextJS
