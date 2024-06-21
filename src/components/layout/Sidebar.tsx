@@ -11,7 +11,7 @@ import { TMenuItem } from "@/types";
 const SideBar = () => {
 	return (
 		<div className="p-5 border-r border-r-gray-200">
-			<a href="/" className="font-bold text-3xl inline-block mb-10">
+			<a href="/" className="font-bold text-3xl inline-block mb-5">
 				<span className="text-primary">U</span>
 				cademy
 			</a>

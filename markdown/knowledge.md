@@ -656,11 +656,11 @@ Search Params: {name: 'tbin'}
 
 ### 10. Some of hook important in NextJS
 
-#### 10.1 [usePathname()](https://nextjs.org/docs/app/api-reference/functions/use-pathname)
+#### 10.1 usePathname()
 
 It use to access the current pathname of the URL. This can be particularly useful for scenarios where you need to conditionally render components or apply logic based on the current route.
 
-#### 10.2 [index.d.ts](https://www.youtube.com/watch?v=qUIs-uwmXlk)
+#### 10.2 index.d.ts
 
 In TypeScript, .d.ts files, also known as declaration files, are used to provide type information about JavaScript code. They help TypeScript understand the types of variables, functions, classes, and other entities in your code, even when the actual implementation is written in plain JavaScript. This is especially useful for libraries and modules that are not written in TypeScript but are used in TypeScript projects.
 
