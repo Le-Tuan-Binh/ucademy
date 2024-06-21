@@ -666,7 +666,7 @@ In TypeScript, .d.ts files, also known as declaration files, are used to provide
 
 When running next dev or next build, Next.js generates a hidden .d.ts file inside .next that contains information about all existing routes in your application (all valid routes as the href type of Link). This .d.ts file is included in tsconfig.json and the TypeScript compiler will check that .d.ts and provide feedback in your editor about invalid links.
 
-### 11. Error Best Practice
+### 11. NextJS Error Best Practice
 
 ```bash
 You're importing a component that needs `usePathname`. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
