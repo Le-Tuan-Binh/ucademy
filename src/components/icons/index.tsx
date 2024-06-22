@@ -5,3 +5,6 @@ export { default as IconManageMember } from "./IconManageMember";
 export { default as IconManageOrder } from "./IconManageOrder";
 export { default as IconManageComment } from "./IconManageComment";
 export { default as IconLeftLongArrow } from "./IconLeftLongArrow";
+export { default as IconEye } from "./IconEye";
+export { default as IconStar } from "./IconStar";
+export { default as IconClock } from "./IconClock";

@@ -124,15 +124,15 @@ Font weight defines the thickness of the characters in a typeface. It ranges fro
 
 Some of common weights include:
 
-- 100: Thin
-- 200: Extra Light
-- 300: Light
-- 400: Normal (Regular)
-- 500: Medium
-- 600: Semi Bold
-- 700: Bold
-- 800: Extra Bold
-- 900: Black
+-  100: Thin
+-  200: Extra Light
+-  300: Light
+-  400: Normal (Regular)
+-  500: Medium
+-  600: Semi Bold
+-  700: Bold
+-  800: Extra Bold
+-  900: Black
 
 You can add some font weight of font you want to use in your website when declare a variable of this font
 
@@ -153,13 +153,13 @@ const roboto = Roboto({
 
 Font subsets are specific parts of a font that contain only the characters necessary for a particular language or group of languages. Common subsets include:
 
-- latin: Basic Latin characters.
-- latin-ext: Extended Latin characters.
-- cyrillic: Cyrillic characters.
-- cyrillic-ext: Extended Cyrillic characters.
-- greek: Greek characters.
-- greek-ext: Extended Greek characters.
-- vietnamese: Vietnamese characters.
+-  latin: Basic Latin characters.
+-  latin-ext: Extended Latin characters.
+-  cyrillic: Cyrillic characters.
+-  cyrillic-ext: Extended Cyrillic characters.
+-  greek: Greek characters.
+-  greek-ext: Extended Greek characters.
+-  vietnamese: Vietnamese characters.
 
 Using subsets can significantly reduce the size of the font files that need to be downloaded, leading to faster page loads and better performance, especially for multilingual websites. Loading only the necessary subsets ensures that users get the best experience without unnecessary delays.
 
@@ -241,7 +241,9 @@ Now when you want to use these font in tag, you need to declare variable in the 
 ```tsx
 return (
 	<html lang="en">
-		<body className={`${manrope.variable} ${roboto.variable}`}>{children}</body>
+		<body className={`${manrope.variable} ${roboto.variable}`}>
+			{children}
+		</body>
 	</html>
 );
 ```
@@ -315,10 +317,10 @@ The paragraph is use the font of the body in `layout.tsx` and the `h1` is use th
 ```tsx
 return (
 	<main>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum,
-		eos veritatis laborum rerum iste ea ullam nesciunt, distinctio dolorum
-		animi, doloribus provident accusamus hic. Minus nisi laudantium asperiores
-		ex!
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+		earum, eos veritatis laborum rerum iste ea ullam nesciunt, distinctio
+		dolorum animi, doloribus provident accusamus hic. Minus nisi laudantium
+		asperiores ex!
 		<h1 className="font-secondary">This is an heading of the website</h1>
 	</main>
 );
@@ -388,10 +390,10 @@ Now when we use, we will use in the attribute of the tag we want to modify font 
 ```js
 return (
 	<main>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae earum,
-		eos veritatis laborum rerum iste ea ullam nesciunt, distinctio dolorum
-		animi, doloribus provident accusamus hic. Minus nisi laudantium asperiores
-		ex!
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+		earum, eos veritatis laborum rerum iste ea ullam nesciunt, distinctio
+		dolorum animi, doloribus provident accusamus hic. Minus nisi laudantium
+		asperiores ex!
 		<h1 className="font-secondary font-medium">
 			This is an heading of the website
 		</h1>
@@ -428,9 +430,9 @@ We can use an object like the code below, or use string like `href={`${url}?page
 
 **Prefetching** is only enabled in production. Here are some value of `prefetching`
 
-- true (default): The full route and its data will be prefetched.
+-  true (default): The full route and its data will be prefetched.
 
-- false: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an `a` tag or incrementally adopting the App Router, which enables disabling prefetching on hover too.
+-  false: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an `a` tag or incrementally adopting the App Router, which enables disabling prefetching on hover too.
 
 It only working in environment production. It means only working when you deploy into the website and server.
 
@@ -459,9 +461,9 @@ app/
 
 In this example we will have some of url path create by the NextJs Application
 
-- `/about` -> It will open the layout from file `page.tsx` in folder `/app/about`
+-  `/about` -> It will open the layout from file `page.tsx` in folder `/app/about`
 
-- `/contact` -> It will open the layout from file `page.tsx` in folder `/app/contact`
+-  `/contact` -> It will open the layout from file `page.tsx` in folder `/app/contact`
 
 Note that, in folder need to have `page.tsx`. If not it can not create the layout and display the alternative url path.
 
@@ -660,23 +662,23 @@ Next.js provides a powerful Image component that optimizes and enhances the perf
 
 The Next.js Image component includes several optimization features:
 
-- Automatic Resizing: Automatically resizes images based on the specified width and height.
+-  Automatic Resizing: Automatically resizes images based on the specified width and height.
 
-- Lazy Loading: Images are loaded lazily by default, which improves page load performance.
+-  Lazy Loading: Images are loaded lazily by default, which improves page load performance.
 
-- Responsive Images: Supports responsive images by specifying different sizes for different viewports.
+-  Responsive Images: Supports responsive images by specifying different sizes for different viewports.
 
-- Quality: Allows setting the quality of the image to balance between performance and visual fidelity.
+-  Quality: Allows setting the quality of the image to balance between performance and visual fidelity.
 
 When using the Image component, there are three required attributes you must provide: src, alt, width, and height.
 
-- `src`: The source of the image. This can be a local path or an external URL.
+-  `src`: The source of the image. This can be a local path or an external URL.
 
-- `alt`: Alternative text for the image, used for accessibility and SEO.
+-  `alt`: Alternative text for the image, used for accessibility and SEO.
 
-- `width`: The width of the image in pixels.
+-  `width`: The width of the image in pixels.
 
-- `height`: The height of the image in pixels.
+-  `height`: The height of the image in pixels.
 
 When using `external images`, make sure to add the domain to the `next.config.js` file under the images property. This allows Next.js to optimize and serve the external images.
 

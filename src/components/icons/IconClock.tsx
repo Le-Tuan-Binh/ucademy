@@ -1,6 +1,6 @@
 import React, { ComponentProps } from "react";
 
-const IconLeftLongArrow = (props: ComponentProps<"svg">) => {
+const IconClock = (props: ComponentProps<"svg">) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -13,10 +13,10 @@ const IconLeftLongArrow = (props: ComponentProps<"svg">) => {
 			<path
 				strokeLinecap="round"
 				strokeLinejoin="round"
-				d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+				d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
 			/>
 		</svg>
 	);
 };
 
-export default IconLeftLongArrow;
+export default IconClock;
