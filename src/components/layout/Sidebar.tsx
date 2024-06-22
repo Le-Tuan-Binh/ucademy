@@ -1,3 +1,4 @@
+"use client";
 /*
 Syntax for Creates a React Arrow Function Components: `rafce`
 */
@@ -6,10 +7,13 @@ import React from "react";
 import { menuItems } from "@/constants";
 import { TMenuItem } from "@/types";
 import { ActiveLink } from "../common";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import { ModeToggle } from "../common/ModeToggle";
+import Link from "next/link";
+import { IconManageMember } from "../icons";
 
 const SideBar = () => {
+	const { userId } = useAuth();
 	return (
 		<div className="p-5 border-r border-r-gray-200 dark:border-opacity-10 bg-white dark:bg-grayDarker flex flex-col">
 			<a href="/" className="font-bold text-3xl inline-block mb-5">
@@ -28,7 +32,16 @@ const SideBar = () => {
 			</ul>
 			<div className="mt-auto flex items-center justify-end gap-5">
 				<ModeToggle />
-				<UserButton />
+				{!userId ? (
+					<Link
+						href="/sign-in"
+						className="size-10 rounded-lg bg-primary text-white flex items-center justify-center p-1"
+					>
+						<IconManageMember className="size-5"></IconManageMember>
+					</Link>
+				) : (
+					<UserButton />
+				)}
 			</div>
 		</div>
 	);
