@@ -14,7 +14,11 @@ export async function getAllCourses(): Promise<ICourse[] | undefined> {
 		console.log(error);
 	}
 }
-export async function getCourseBySlug({ slug }: { slug: string }) {
+export async function getCourseBySlug({
+	slug,
+}: {
+	slug: string;
+}): Promise<ICourse | undefined> {
 	try {
 		connectToDatabase();
 		const findCourse = await Course.findOne({ slug });

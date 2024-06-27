@@ -8,3 +8,6 @@ export { default as IconLeftLongArrow } from "./IconLeftLongArrow";
 export { default as IconEye } from "./IconEye";
 export { default as IconStar } from "./IconStar";
 export { default as IconClock } from "./IconClock";
+export { default as IconDocument } from "./IconDocument";
+export { default as IconAdd } from "./IconAdd";
+export { default as IconCheck } from "./IconCheck";
