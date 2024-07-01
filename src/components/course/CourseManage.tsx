@@ -16,6 +16,7 @@ import {
 	IconEdit,
 	IconEye,
 	IconLeftArrow,
+	IconPlus,
 	IconStudy,
 } from "../icons";
 import Link from "next/link";
@@ -79,14 +80,20 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
 		} catch (e) {}
 	};
 	return (
-		<div>
-			<div className="flex items-center justify-between mb-10">
+		<>
+			<Link
+				href="/manage/course/new"
+				className="size-10 rounded-full flexCenter bg-primary text-white fixed right-5 bottom-5 hover:animate-spin"
+			>
+				<IconPlus className="size-6"></IconPlus>
+			</Link>
+			<div className="flex flex-col lg:flex-row lg:items-center gap-5 justify-between mb-10">
 				<Heading>Quản lý khóa học</Heading>
-				<div className="w-[300px]">
+				<div className="w-full lg:w-[300px]">
 					<Input placeholder="Tìm kiếm khóa học..."></Input>
 				</div>
 			</div>
-			<Table>
+			<Table className="table-responsive">
 				<TableHeader>
 					<TableRow>
 						<TableHead>Thông tin khóa học</TableHead>
@@ -113,8 +120,10 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
 												className="flex-shrink-0 size-16 rounded-lg object-cover"
 											></Image>
 											<div className="flex flex-col gap-1">
-												<h3 className="font-bold text-base">{course.title}</h3>
-												<h4 className="text-sm text-slate-500">
+												<h3 className="font-bold text-sm lg:text-base whitespace-nowrap">
+													{course.title}
+												</h3>
+												<h4 className="text-xs lg:text-sm text-slate-500">
 													{new Date(course.created_at).toLocaleDateString(
 														"vi-VI"
 													)}
@@ -183,7 +192,7 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
 					<IconRightArrow className="size-5"></IconRightArrow>
 				</button>
 			</div>
-		</div>
+		</>
 	);
 };
 

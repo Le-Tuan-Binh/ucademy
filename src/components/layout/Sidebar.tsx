@@ -42,12 +42,12 @@ const SideBar = () => {
 	);
 };
 
-function MenuItem({ url = "/", title = "", icon }: TMenuItem) {
+export function MenuItem({ url = "/", title = "", icon, onlyIcon }: TMenuItem) {
 	return (
 		<li>
 			<ActiveLink url={url}>
 				{icon}
-				{title}
+				{onlyIcon ? null : title}
 			</ActiveLink>
 		</li>
 	);

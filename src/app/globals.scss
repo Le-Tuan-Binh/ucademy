@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply bg-gray-100 dark:bg-grayDarkest dark:text-white;
+		@apply bg-gray-100 dark:bg-grayDarkest dark:text-white text-grayDarkest antialiased;
 	}
 	input[type="number"]::-webkit-inner-spin-button,
 	input[type="number"]::-webkit-outer-spin-button {
@@ -26,6 +26,9 @@
 	}
 }
 @layer utilities {
+	.flexCenter {
+		@apply flex items-center justify-center;
+	}
 	.bgDarkMode {
 		@apply bg-white dark:bg-grayDarker;
 	}
@@ -35,11 +38,9 @@
 }
 @media screen and (max-width: 1023.98px) {
 	.course-slider {
-		display: grid;
 		justify-content: flex-start;
 		grid-auto-columns: 300px;
 		grid-auto-flow: column;
-		grid-gap: 1.5rem;
 		overflow: auto;
 		overflow-y: hidden;
 		scroll-snap-type: x mandatory;
@@ -56,5 +57,15 @@
 	}
 	.course-slider > * {
 		scroll-snap-align: start;
+	}
+}
+.table-responsive {
+	@media screen and (max-width: 1023.98px) {
+		th,
+		td {
+			&:not(:first-child) {
+				padding-left: 100px;
+			}
+		}
 	}
 }
