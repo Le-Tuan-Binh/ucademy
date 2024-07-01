@@ -1,5 +1,12 @@
 import PageNotFound from "@/app/not-found";
 import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
+
+import {
 	IconCheck,
 	IconDocument,
 	IconPlay,
@@ -59,7 +66,7 @@ const page = async ({
 				<BoxSection title="Thông tin khóa học">
 					<div className="grid grid-cols-4 gap-5 mb-10">
 						<BoxInfo title="Bài học">75 bài giảng</BoxInfo>
-						<BoxInfo title="Lượt xem">{data.views}</BoxInfo>
+						<BoxInfo title="Lượt xem">{data.views.toLocaleString()}</BoxInfo>
 						<BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
 						<BoxInfo title="Thời lượng">30h45ph</BoxInfo>
 					</div>
@@ -86,10 +93,12 @@ const page = async ({
 				</BoxSection>
 				<BoxSection title="Q&A">
 					{data.info.qa.map((qa, index) => (
-						<div key={index}>
-							<div>{qa.question}</div>
-							<div>{qa.answer}</div>
-						</div>
+						<Accordion type="single" collapsible key={index}>
+							<AccordionItem value={qa.question}>
+								<AccordionTrigger>{qa.question}</AccordionTrigger>
+								<AccordionContent>{qa.answer}</AccordionContent>
+							</AccordionItem>
+						</Accordion>
 					))}
 				</BoxSection>
 			</div>
