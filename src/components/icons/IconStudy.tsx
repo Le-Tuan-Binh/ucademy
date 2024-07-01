@@ -1,6 +1,6 @@
-import React, { ComponentProps } from "react";
+import { ComponentProps } from "react";
 
-const IconManageCourse = (props: ComponentProps<"svg">) => {
+const IconStudy = (props: ComponentProps<"svg">) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@ const IconManageCourse = (props: ComponentProps<"svg">) => {
 	);
 };
 
-export default IconManageCourse;
+export default IconStudy;

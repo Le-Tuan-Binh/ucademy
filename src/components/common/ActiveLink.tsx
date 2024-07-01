@@ -2,7 +2,6 @@
 import { TActiveLinkProps } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 const ActiveLink = ({ url, children }: TActiveLinkProps) => {
 	const pathName = usePathname();
@@ -10,9 +9,9 @@ const ActiveLink = ({ url, children }: TActiveLinkProps) => {
 	return (
 		<Link
 			href={url}
-			className={`p-3 rounded-md flex items-center gap-3 dark:text-grayDark transition-all ${
+			className={`p-3 rounded-md flex items-center gap-3 dark:text-grayDark transition-all text-base ${
 				isActive
-					? "!text-white bg-primary svg-animate"
+					? "!text-primary bg-primary bg-opacity-10 svg-animate font-medium"
 					: "hover:!text-primary hover:!bg-primary hover:!bg-opacity-10"
 			} `}
 		>

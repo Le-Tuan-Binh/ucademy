@@ -2,9 +2,9 @@ import PageNotFound from "@/app/not-found";
 import {
 	IconCheck,
 	IconDocument,
-	IconManageCourse,
-	IconManageMember,
-	IconPlayCircle,
+	IconPlay,
+	IconStudy,
+	IconUser,
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { courseLevelTitle } from "@/constants";
@@ -97,27 +97,27 @@ const page = async ({
 				<div className="bg-white rounded-lg p-5">
 					<div className="flex items-center gap-2 mb-3">
 						<strong className="text-primary text-xl font-bold">
-							{data.sale_price}
+							{data.sale_price.toLocaleString()}đ
 						</strong>
 						<span className="text-slate-400 text-sm line-through">
-							{data.price}
+							{data.price.toLocaleString()}đ
 						</span>
 						<span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary text-primary bg-opacity-10 font-semibold text-sm">
-							{Math.floor((data.price / data.sale_price) * 100)}%
+							{Math.floor((data.sale_price / data.price) * 100)}%
 						</span>
 					</div>
 					<h3 className="font-bold mb-3 text-sm">Khóa học gồm có:</h3>
 					<ul className="mb-3 flex flex-col gap-3 text-sm text-slate-500">
 						<li className="flex items-center gap-2">
-							<IconPlayCircle className="size-4" />
+							<IconPlay className="size-4" />
 							<span>30 giờ học theo yêu cầu</span>
 						</li>
 						<li className="flex items-center gap-2">
-							<IconManageMember className="size-4" />
+							<IconUser className="size-4" />
 							<span>Có nhóm hỗ trợ trong quá trình học</span>
 						</li>
 						<li className="flex items-center gap-2">
-							<IconManageCourse className="size-4" />
+							<IconStudy className="size-4" />
 							<span>Tài liệu đa dạng, phong phú</span>
 						</li>
 						<li className="flex items-center gap-2">

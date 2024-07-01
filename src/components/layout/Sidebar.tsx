@@ -5,12 +5,12 @@ import { ActiveLink } from "../common";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { ModeToggle } from "../common/ModeToggle";
 import Link from "next/link";
-import { IconManageMember } from "../icons";
+import { IconUser } from "../icons";
 
 const SideBar = () => {
 	const { userId } = useAuth();
 	return (
-		<div className="hidden p-5 border-r border-r-gray-200 dark:border-opacity-10 bg-white dark:bg-grayDarker lg:flex flex-col fixed top-0 left-0 bottom-0 w-[300px]">
+		<div className="hidden p-5 bgDarkMode borderDarkMode lg:flex flex-col fixed top-0 left-0 bottom-0 w-[300px]">
 			<a href="/" className="font-bold text-3xl inline-block mb-5">
 				<span className="text-primary text-4xl">U</span>
 				cademy
@@ -32,7 +32,7 @@ const SideBar = () => {
 						href="/sign-in"
 						className="size-10 rounded-lg bg-primary text-white flex items-center justify-center p-1"
 					>
-						<IconManageMember className="size-5"></IconManageMember>
+						<IconUser className="size-5"></IconUser>
 					</Link>
 				) : (
 					<UserButton />

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { IconEye, IconStar, IconClock } from "../icons";
 import { ICourse } from "@/database/course.model";
 
@@ -21,13 +20,10 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 	];
 	return (
 		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl">
-			<Link
-				href={`/course/${data.slug}`}
-				className="block h-[180px] relative"
-			>
+			<Link href={`/course/${data.slug}`} className="block h-[180px] relative">
 				<Image
 					alt=""
-					src="https://images.unsplash.com/photo-1716881763995-097b7a68ea3d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					src={data.image}
 					width={600}
 					height={400}
 					className="w-full h-full object-cover rounded-lg"
@@ -48,7 +44,7 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 						</div>
 					))}
 					<span className="text-primary ml-auto text-base font-bold">
-						{data.price}
+						{data.sale_price.toLocaleString()}đ
 					</span>
 				</div>
 				<Link

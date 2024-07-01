@@ -1,18 +1,16 @@
-import {
-	IconPlayCircle,
-	IconExplore,
-	IconManageCourse,
-	IconManageMember,
-	IconManageOrder,
-	IconManageComment,
-} from "@/components/icons";
+import { IconExplore } from "@/components/icons";
+import IconManageComment from "@/components/icons/IconComment";
+import IconManageOrder from "@/components/icons/IconOrder";
+import IconPlayCircle from "@/components/icons/IconPlay";
+import IconManageCourse from "@/components/icons/IconStudy";
+import IconManageMember from "@/components/icons/IconUser";
 import { TMenuItem } from "@/types";
 import { ECourseLevel, ECourseStatus } from "@/types/enums";
 
 export const menuItems: TMenuItem[] = [
 	{
 		url: "/",
-		title: "Khám phá",
+		title: "Khám phá học tập",
 		icon: <IconExplore className="size-5" />,
 	},
 	{
@@ -42,21 +40,31 @@ export const menuItems: TMenuItem[] = [
 	},
 ];
 
-export const courseStatus = [
+export const courseStatus: {
+	title: string;
+	value: ECourseStatus;
+	className?: string;
+}[] = [
 	{
 		title: "Đã duyệt",
 		value: ECourseStatus.APPROVED,
+		className: "text-green-500 bg-green-500",
 	},
 	{
 		title: "Chờ duyệt",
 		value: ECourseStatus.PENDING,
+		className: "text-orange-500 bg-orange-500",
 	},
 	{
 		title: "Từ chối",
 		value: ECourseStatus.REJECTED,
+		className: "text-red-500 bg-red-500",
 	},
 ];
-export const courseLevel = [
+export const courseLevel: {
+	title: string;
+	value: ECourseLevel;
+}[] = [
 	{
 		title: "Dành cho người mới bắt đầu",
 		value: ECourseLevel.BEGINNER,
@@ -75,4 +83,12 @@ export const courseLevelTitle: Record<ECourseLevel, string> = {
 	[ECourseLevel.BEGINNER]: "Dành cho người mới bắt đầu",
 	[ECourseLevel.INTERMEDIATE]: "Cơ bản",
 	[ECourseLevel.ADVANCED]: "Nâng cao",
+};
+export const commonClassName = {
+	status:
+		"bg-opacity-10 border border-current rounded-md font-medium px-3 py-1 text-sm",
+	action:
+		"size-8 rounded-md border flex items-center justify-center p-2 text-gray-500 hover:border-opacity-80 dark:bg-transparent borderDarkMode dark:hover:border-opacity-20",
+	paginationButton:
+		"size-10 rounded-md borderDarkMode bgDarkMode border flex items-center justify-center hover:border-primary transition-all hover:text-primary",
 };
