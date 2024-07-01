@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IconEye, IconStar, IconClock } from "../icons";
 import { ICourse } from "@/database/course.model";
+import { commonClassName } from "@/constants";
 
 const CourseItem = ({ data }: { data: ICourse }) => {
 	const courseInfo = [
@@ -19,13 +20,13 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 		},
 	];
 	return (
-		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl">
+		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl flex flex-col">
 			<Link href={`/course/${data.slug}`} className="block h-[180px] relative">
 				<Image
 					alt=""
 					src={data.image}
-					width={600}
-					height={400}
+					width={300}
+					height={200}
 					className="w-full h-full object-cover rounded-lg"
 					sizes="@media (min-width: 640px) 300px, 100vw"
 					priority
@@ -34,7 +35,7 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 					Khóa học mới
 				</span> */}
 			</Link>
-			<div className="pt-4">
+			<div className="pt-4 flex flex-col flex-1">
 				<h3 className="font-bold text-lg mb-3">{data.title}</h3>
 				<div className="flex items-center gap-3 mb-5 text-xs text-gray-500 dark:text-grayDark">
 					{courseInfo.map((item, index) => (
@@ -49,7 +50,7 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 				</div>
 				<Link
 					href={`/course/${data.slug}`}
-					className="flex items-center justify-center w-full mt-10 rounded-lg text-white font-semibold bg-primary h-12"
+					className={commonClassName.btnPrimary}
 				>
 					Xem chi tiết
 				</Link>
