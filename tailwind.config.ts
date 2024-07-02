@@ -6,7 +6,7 @@ const config: Config = {
 	theme: {
 		extend: {
 			screens: {
-				"3xl": "1800px",
+				"3xl": "1700px",
 			},
 			colors: {
 				primary: "#5624d0",

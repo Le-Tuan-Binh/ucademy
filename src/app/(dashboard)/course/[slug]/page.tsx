@@ -19,6 +19,7 @@ import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { ECourseStatus } from "@/types/enums";
 import Image from "next/image";
 import React from "react";
+import { ILecture } from "@/database/lecture.model";
 
 const page = async ({
 	params,
@@ -37,6 +38,7 @@ const page = async ({
 		return <PageNotFound />;
 	}
 	const videoId = data.intro_url?.split("v=")[1];
+	const lectures = data.lectures || [];
 	return (
 		<div className="wrapper grid lg:grid-cols-[2fr,1fr] g-10 min-h-screen">
 			<div>
@@ -69,6 +71,27 @@ const page = async ({
 						<BoxInfo title="Lượt xem">{data.views.toLocaleString()}</BoxInfo>
 						<BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
 						<BoxInfo title="Thời lượng">30h45ph</BoxInfo>
+					</div>
+				</BoxSection>
+				<BoxSection title="Nội dung của khóa học">
+					<div className="flex flex-col gap-5">
+						{lectures.map((lecture: ILecture) => (
+							<Accordion
+								type="single"
+								collapsible
+								className="w-full"
+								key={lecture._id}
+							>
+								<AccordionItem value={lecture._id}>
+									<AccordionTrigger>
+										<div className="flex items-center gap-3 justify-between w-full pr-5">
+											<div>{lecture.title}</div>
+										</div>
+									</AccordionTrigger>
+									<AccordionContent></AccordionContent>
+								</AccordionItem>
+							</Accordion>
+						))}
 					</div>
 				</BoxSection>
 				<BoxSection title="Yêu cầu của khóa học">
