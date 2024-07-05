@@ -72,6 +72,7 @@ export type TUpdateLessonParams = {
 		title?: string;
 		slug?: string;
 		duration?: number;
+		_destroy?: boolean;
 		video_url?: string;
 		content?: string;
 	};
