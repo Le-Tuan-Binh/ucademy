@@ -19,7 +19,7 @@ import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { ECourseStatus } from "@/types/enums";
 import Image from "next/image";
 import React from "react";
-import { ILecture } from "@/database/lecture.model";
+import { TUpdateCourseLecture } from "@/types";
 
 const page = async ({
 	params,
@@ -75,7 +75,7 @@ const page = async ({
 				</BoxSection>
 				<BoxSection title="Nội dung của khóa học">
 					<div className="flex flex-col gap-5">
-						{lectures.map((lecture: ILecture) => (
+						{lectures.map((lecture: TUpdateCourseLecture) => (
 							<Accordion
 								type="single"
 								collapsible
