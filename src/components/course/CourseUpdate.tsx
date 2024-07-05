@@ -152,7 +152,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 							<FormItem>
 								<FormLabel>Đường dẫn đến khóa học</FormLabel>
 								<FormControl>
-									<Input placeholder="khoa-hoc-lap-trinh" {...field} />
+									<Input placeholder="name-of-course" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
