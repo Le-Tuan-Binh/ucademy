@@ -119,7 +119,6 @@ export const editorOptions = (field: any, theme: any) => ({
 			"insertdatetime",
 			"media",
 			"table",
-			"heading",
 		],
 		toolbar:
 			"undo redo | " +
