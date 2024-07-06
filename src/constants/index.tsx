@@ -101,6 +101,7 @@ export const editorOptions = (field: any, theme: any) => ({
 	init: {
 		codesample_global_prismjs: true,
 		skin: theme === "dark" ? "oxide-dark" : "oxide",
+		content_css: theme === "dark" ? "dark" : "default",
 		height: 300,
 		menubar: false,
 		plugins: [

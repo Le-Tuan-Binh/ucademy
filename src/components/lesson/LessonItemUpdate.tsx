@@ -19,14 +19,16 @@ import { updateLesson } from "@/lib/actions/lesson.actions";
 import { toast } from "react-toastify";
 import { Editor } from "@tinymce/tinymce-react";
 import { editorOptions } from "@/constants";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+
 const formSchema = z.object({
 	slug: z.string().optional(),
 	duration: z.number().optional(),
 	video_url: z.string().optional(),
 	content: z.string().optional(),
 });
+
 const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
 	const editorRef = useRef<any>(null);
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -38,6 +40,13 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
 			content: lesson.content,
 		},
 	});
+	const { theme } = useTheme();
+	const [editorKey, setEditorKey] = useState(0);
+
+	useEffect(() => {
+		setEditorKey((prevKey) => prevKey + 1);
+	}, [theme]);
+
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
 			const res = await updateLesson({
@@ -52,10 +61,9 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
 		} finally {
 		}
 	}
-	const { theme } = useTheme();
+
 	return (
 		<div>
-			{" "}
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
 					<div className="grid grid-cols-2 gap-8">
@@ -114,6 +122,7 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
 									<FormLabel>Nội dung của bài học</FormLabel>
 									<FormControl>
 										<Editor
+											key={editorKey}
 											apiKey={process.env.NEXT_PUBLIC_TINY_MCE_API_KEY}
 											onInit={(_evt, editor) => {
 												(editorRef.current = editor).setContent(
