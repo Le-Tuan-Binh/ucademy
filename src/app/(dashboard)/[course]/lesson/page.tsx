@@ -4,6 +4,7 @@ import { findAllLesson, getLessonBySlug } from "@/lib/actions/lesson.actions";
 import LessonNavigation from "./LessonNavigation";
 import Heading from "@/components/common/Heading";
 import LessonContent from "@/components/lesson/LessonContent";
+import { getHistory } from "@/lib/actions/history.actions";
 
 const page = async ({
 	params,
@@ -40,6 +41,9 @@ const page = async ({
 	const prevLesson = lessonList?.[currentLessonIndex - 1];
 	const videoId = lessonDetails.video_url?.split("/").at(-1);
 	const lectures = findCourse.lectures || [];
+	const histories = await getHistory({ course: courseId });
+	const completePercentage =
+		((histories?.length || 0) / (lessonList?.length || 1)) * 100;
 	return (
 		<div className="block xl:grid xl:grid-cols-[minmax(0,2fr),minmax(0,1.2fr)] gap-5 min-h-screen items-start">
 			<div>
@@ -68,10 +72,19 @@ const page = async ({
 				</div>
 			</div>
 			<div className="sticky top-5 right-0 max-h-[calc(100svh-100px)] overflow-y-auto">
+				<div className="h-3 w-full rounded-full border borderDarkMode bgDarkMode mb-2">
+					<div
+						className="w-0 h-full rounded-full bg-secondary transition-all duration-300"
+						style={{
+							width: `${completePercentage}%`,
+						}}
+					></div>
+				</div>
 				<LessonContent
 					lectures={lectures}
 					course={course}
 					slug={slug}
+					histories={histories ? JSON.parse(JSON.stringify(histories)) : []}
 				></LessonContent>
 			</div>
 		</div>
