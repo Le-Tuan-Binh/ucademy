@@ -66,7 +66,7 @@ export const courseLevel: {
 	value: ECourseLevel;
 }[] = [
 	{
-		title: "Dành cho người mới bắt đầu",
+		title: "Người mới bắt đầu",
 		value: ECourseLevel.BEGINNER,
 	},
 	{
@@ -80,8 +80,8 @@ export const courseLevel: {
 ];
 
 export const courseLevelTitle: Record<ECourseLevel, string> = {
-	[ECourseLevel.BEGINNER]: "Dành cho người mới bắt đầu",
-	[ECourseLevel.INTERMEDIATE]: "Cơ bản",
+	[ECourseLevel.BEGINNER]: "Cơ bản",
+	[ECourseLevel.INTERMEDIATE]: "Trung cấp",
 	[ECourseLevel.ADVANCED]: "Nâng cao",
 };
 export const commonClassName = {

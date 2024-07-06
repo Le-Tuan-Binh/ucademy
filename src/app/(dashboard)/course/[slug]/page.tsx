@@ -19,7 +19,7 @@ import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { ECourseStatus } from "@/types/enums";
 import Image from "next/image";
 import React from "react";
-import { TUpdateCourseLecture } from "@/types";
+import LessonContent from "@/components/lesson/LessonContent";
 
 const page = async ({
 	params,
@@ -37,13 +37,13 @@ const page = async ({
 	if (data.status !== ECourseStatus.APPROVED) {
 		return <PageNotFound />;
 	}
-	const videoId = data.intro_url?.split("v=")[1];
+	const videoId = data.intro_url?.split("/").at(-1);
 	const lectures = data.lectures || [];
 	return (
-		<div className="wrapper grid lg:grid-cols-[2fr,1fr] g-10 min-h-screen">
+		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr),400px] gap-8 items-start relative">
 			<div>
 				<div className="relative aspect-video mb-5">
-					{!data.intro_url ? (
+					{data.intro_url ? (
 						<>
 							<iframe
 								width="853"
@@ -74,25 +74,7 @@ const page = async ({
 					</div>
 				</BoxSection>
 				<BoxSection title="Nội dung của khóa học">
-					<div className="flex flex-col gap-5">
-						{lectures.map((lecture: TUpdateCourseLecture) => (
-							<Accordion
-								type="single"
-								collapsible
-								className="w-full"
-								key={lecture._id}
-							>
-								<AccordionItem value={lecture._id}>
-									<AccordionTrigger>
-										<div className="flex items-center gap-3 justify-between w-full pr-5">
-											<div>{lecture.title}</div>
-										</div>
-									</AccordionTrigger>
-									<AccordionContent></AccordionContent>
-								</AccordionItem>
-							</Accordion>
-						))}
-					</div>
+					<LessonContent lectures={lectures} course="" slug=""></LessonContent>
 				</BoxSection>
 				<BoxSection title="Yêu cầu của khóa học">
 					{data.info.requirements.map((requirement, index) => (
@@ -125,21 +107,21 @@ const page = async ({
 					))}
 				</BoxSection>
 			</div>
-			<div className="div">
-				<div className="bg-white rounded-lg p-5">
-					<div className="flex items-center gap-2 mb-3">
-						<strong className="text-primary text-xl font-bold">
+			<div className="sticky top-5 right-0 max-h-[calc(100svh-100px)] overflow-y-auto">
+				<div className="bgDarkMode border borderDarkMode rounded-lg p-5">
+					<div className="flex items-center gap-2 mb-5">
+						<strong className="text-lg lg:text-xl text-primary">
 							{data.sale_price.toLocaleString()}đ
 						</strong>
 						<span className="text-slate-400 text-sm line-through">
 							{data.price.toLocaleString()}đ
 						</span>
 						<span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary text-primary bg-opacity-10 font-semibold text-sm">
-							{Math.floor((data.sale_price / data.price) * 100)}%
+							-{Math.floor((data.sale_price / data.price) * 100)}%
 						</span>
 					</div>
-					<h3 className="font-bold mb-3 text-sm">Khóa học gồm có:</h3>
-					<ul className="mb-3 flex flex-col gap-3 text-sm text-slate-500">
+					<h3 className="text-base font-semibold mb-3">Khóa học gồm có:</h3>
+					<ul className="flex flex-col gap-3 text-sm text-slate-500 mb-5">
 						<li className="flex items-center gap-2">
 							<IconPlay className="size-4" />
 							<span>30 giờ học theo yêu cầu</span>
@@ -157,7 +139,6 @@ const page = async ({
 							<span>13 tài nguyên trong khóa học</span>
 						</li>
 					</ul>
-
 					<Button variant={"primary"} className="w-full">
 						Mua khóa học
 					</Button>

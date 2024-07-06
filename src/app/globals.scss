@@ -69,3 +69,35 @@
 		}
 	}
 }
+.entry-content {
+	font-size: 16px;
+	line-height: 2;
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	ol,
+	ul,
+	figure {
+		@apply mb-5;
+	}
+	li > ul {
+		margin-bottom: 0;
+	}
+	This CSS rul ol {
+		list-style: decimal;
+	}
+	ul {
+		list-style: disc;
+	}
+	ol,
+	ul {
+		@apply pl-10;
+	}
+	a {
+		@apply underline text-primary font-medium;
+	}
+}
