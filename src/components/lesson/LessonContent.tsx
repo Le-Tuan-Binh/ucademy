@@ -12,12 +12,12 @@ const LessonContent = ({
 	lectures,
 	course,
 	slug,
-	histories,
+	histories = [],
 }: {
 	lectures: TUpdateCourseLecture[];
 	course?: string;
 	slug?: string;
-	histories: IHistory[];
+	histories?: IHistory[];
 }) => {
 	return (
 		<div className="flex flex-col gap-5">
