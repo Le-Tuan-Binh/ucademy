@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang="en">
-				<body className={manrope.className}>
+			<html lang="en" suppressHydrationWarning={true}>
+				<body className={manrope.className} suppressHydrationWarning={true}>
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
