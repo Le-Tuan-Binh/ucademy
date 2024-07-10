@@ -57,13 +57,15 @@ export async function getLessonBySlug({
 }): Promise<ILesson | undefined> {
 	try {
 		connectToDatabase();
-		const findLesson = await Lesson.findOne({ slug, course });
+		const findLesson = await Lesson.findOne({ slug, course }).select(
+			"title video_url content"
+		);
 		return findLesson;
 	} catch (error) {
 		console.log(error);
 	}
 }
-export async function findAllLesson({
+export async function findAllLessons({
 	course,
 }: {
 	course: string;
@@ -72,8 +74,21 @@ export async function findAllLesson({
 		connectToDatabase();
 		const lessons = await Lesson.find({
 			course,
-		});
+		}).select("title video_url content slug");
 		return lessons;
+	} catch (error) {
+		console.log(error);
+	}
+}
+export async function countLessonByCourseId({
+	courseId,
+}: {
+	courseId: string;
+}): Promise<number | undefined> {
+	try {
+		connectToDatabase();
+		const count = await Lesson.countDocuments({ course: courseId });
+		return count || 0;
 	} catch (error) {
 		console.log(error);
 	}
