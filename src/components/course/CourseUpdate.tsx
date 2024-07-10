@@ -1,8 +1,9 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useImmer } from "use-immer";
+
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -13,24 +14,25 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ECourseLevel, ECourseStatus } from "@/types/enums";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Textarea } from "../ui/textarea";
-import { updateCourse } from "@/lib/actions/course.actions";
-import { ICourse } from "@/database/course.model";
-import { toast } from "react-toastify";
-import { IconAdd } from "../icons";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
 import { courseLevel, courseStatus } from "@/constants";
+import { ICourse } from "@/database/course.model";
+import { updateCourse } from "@/lib/actions/course.actions";
+import { ECourseLevel, ECourseStatus } from "@/types/enums";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useImmer } from "use-immer";
+import { IconAdd } from "../icons";
+import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
 	title: z.string().min(10, "Tên khóa học phải có ít nhất 10 ký tự"),
@@ -85,9 +87,9 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 			level: data.level,
 			views: data.views,
 			info: {
-				requirements: courseInfo.requirements,
-				qa: courseInfo.qa,
-				benefits: courseInfo.benefits,
+				requirements: data.info.requirements,
+				benefits: data.info.benefits,
+				qa: data.info.qa,
 			},
 		},
 	});
@@ -95,7 +97,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		setIsSubmitting(true);
 		try {
-			const result = await updateCourse({
+			const res = await updateCourse({
 				slug: data.slug,
 				updateData: {
 					title: values.title,
@@ -107,8 +109,8 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 					views: values.views,
 					info: {
 						requirements: courseInfo.requirements,
-						qa: courseInfo.qa,
 						benefits: courseInfo.benefits,
+						qa: courseInfo.qa,
 					},
 					status: values.status,
 					level: values.level,
@@ -118,8 +120,8 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 			if (values.slug !== data.slug) {
 				router.replace(`/manage/course/update?slug=${values.slug}`);
 			}
-			if (result?.success) {
-				toast.success(result.message);
+			if (res?.success) {
+				toast.success(res.message);
 			}
 		} catch (error) {
 			console.log(error);
@@ -150,27 +152,9 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 						name="slug"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Đường dẫn đến khóa học</FormLabel>
+								<FormLabel>Đường dẫn khóa học</FormLabel>
 								<FormControl>
-									<Input placeholder="name-of-course" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="sale_price"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Giá khuyến mãi</FormLabel>
-								<FormControl>
-									<Input
-										type="number"
-										placeholder="599.000"
-										{...field}
-										onChange={(e) => field.onChange(Number(e.target.value))}
-									/>
+									<Input placeholder="khoa-hoc-lap-trinh" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -181,13 +165,35 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 						name="price"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Giá ban đầu</FormLabel>
+								<FormLabel>Giá khuyến mãi</FormLabel>
+								<FormControl>
+									<Input
+										type="number"
+										placeholder="599.000"
+										{...field}
+										onChange={(e) =>
+											field.onChange(Number(e.target.value))
+										}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="sale_price"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Giá gốc</FormLabel>
 								<FormControl>
 									<Input
 										type="number"
 										placeholder="999.000"
 										{...field}
-										onChange={(e) => field.onChange(Number(e.target.value))}
+										onChange={(e) =>
+											field.onChange(Number(e.target.value))
+										}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -204,7 +210,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 									<Textarea
 										placeholder="Nhập mô tả..."
 										{...field}
-										className="h-[200px]"
+										className="h-[250px]"
 									/>
 								</FormControl>
 								<FormMessage />
@@ -219,15 +225,18 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 								<FormLabel>Ảnh đại diện</FormLabel>
 								<FormControl>
 									<>
-										<div className="h-[200px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative">
+										<div className="h-[250px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative">
 											{!imageWatch ? (
 												<UploadButton
 													endpoint="imageUploader"
 													onClientUploadComplete={(res) => {
+														// Do something with the response
 														form.setValue("image", res[0].url);
 													}}
 													onUploadError={(error: Error) => {
-														console.log(`ERROR! ${error.message}`);
+														console.error(
+															`ERROR! ${error.message}`
+														);
 													}}
 												/>
 											) : (
@@ -235,7 +244,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 													alt=""
 													src={imageWatch}
 													fill
-													className="w-full h-full object-cover"
+													className="w-full h-full object-cover rounded-md"
 												/>
 											)}
 										</div>
@@ -250,10 +259,10 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 						name="intro_url"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Đường dẫn Youtube</FormLabel>
+								<FormLabel>Youtube URL</FormLabel>
 								<FormControl>
 									<Input
-										placeholder="https://youtube.com/course-name"
+										placeholder="https://youtube.com/axfgdr5"
 										{...field}
 									/>
 								</FormControl>
@@ -272,7 +281,9 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 										placeholder="1000"
 										type="number"
 										{...field}
-										onChange={(e) => field.onChange(Number(e.target.value))}
+										onChange={(e) =>
+											field.onChange(Number(e.target.value))
+										}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -295,7 +306,10 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 										</SelectTrigger>
 										<SelectContent>
 											{courseStatus.map((status) => (
-												<SelectItem value={status.value} key={status.value}>
+												<SelectItem
+													value={status.value}
+													key={status.value}
+												>
 													{status.title}
 												</SelectItem>
 											))}
@@ -322,7 +336,10 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 										</SelectTrigger>
 										<SelectContent>
 											{courseLevel.map((level) => (
-												<SelectItem value={level.value} key={level.value}>
+												<SelectItem
+													value={level.value}
+													key={level.value}
+												>
 													{level.title}
 												</SelectItem>
 											))}
@@ -354,14 +371,15 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 								</FormLabel>
 								<FormControl>
 									<>
-										{courseInfo.requirements.map((requirement, index) => (
+										{courseInfo.requirements.map((r, index) => (
 											<Input
 												key={index}
 												placeholder={`Yêu cầu số ${index + 1}`}
-												value={requirement}
+												value={r}
 												onChange={(e) => {
 													setCourseInfo((draft) => {
-														draft.requirements[index] = e.target.value;
+														draft.requirements[index] =
+															e.target.value;
 													});
 												}}
 											/>
@@ -378,7 +396,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel className="flex items-center justify-between gap-5">
-									<span>Lợi ích đạt được sau khi hoàn thành khóa học</span>
+									<span>Lợi ích</span>
 									<button
 										className="text-primary"
 										onClick={() => {
@@ -393,14 +411,15 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 								</FormLabel>
 								<FormControl>
 									<>
-										{courseInfo.benefits.map((benefit, index) => (
+										{courseInfo.benefits.map((r, index) => (
 											<Input
 												key={index}
 												placeholder={`Lợi ích số ${index + 1}`}
-												value={benefit}
+												value={r}
 												onChange={(e) => {
 													setCourseInfo((draft) => {
-														draft.benefits[index] = e.target.value;
+														draft.benefits[index] =
+															e.target.value;
 													});
 												}}
 											/>
@@ -417,7 +436,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 						render={({ field }) => (
 							<FormItem className="col-start-1 col-end-3">
 								<FormLabel className="flex items-center justify-between gap-5">
-									<span>Q&A</span>
+									<span>Q.A</span>
 									<button
 										className="text-primary"
 										onClick={() => {
@@ -435,25 +454,32 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
 								</FormLabel>
 								<FormControl>
 									<>
-										{courseInfo.qa.map((qa, index) => (
-											<div className="grid grid-cols-2 gap-5" key={index}>
+										{courseInfo.qa.map((item, index) => (
+											<div
+												className="grid grid-cols-2 gap-5"
+												key={index}
+											>
 												<Input
 													key={index}
 													placeholder={`Câu hỏi số ${index + 1}`}
-													value={qa.question}
+													value={item.question}
 													onChange={(e) => {
 														setCourseInfo((draft) => {
-															draft.qa[index].question = e.target.value;
+															draft.qa[index].question =
+																e.target.value;
 														});
 													}}
 												/>
 												<Input
 													key={index}
-													placeholder={`Câu trả lời số ${index + 1}`}
-													value={qa.answer}
+													placeholder={`Câu trả lời số ${
+														index + 1
+													}`}
+													value={item.answer}
 													onChange={(e) => {
 														setCourseInfo((draft) => {
-															draft.qa[index].answer = e.target.value;
+															draft.qa[index].answer =
+																e.target.value;
 														});
 													}}
 												/>

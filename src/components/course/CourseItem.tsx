@@ -4,7 +4,15 @@ import { IconEye, IconStar, IconClock } from "../icons";
 import { ICourse } from "@/database/course.model";
 import { commonClassName } from "@/constants";
 
-const CourseItem = ({ data }: { data: ICourse }) => {
+const CourseItem = ({
+	data,
+	cta,
+	url = "",
+}: {
+	data: ICourse;
+	cta?: string;
+	url?: string;
+}) => {
 	const courseInfo = [
 		{
 			title: data.views,
@@ -19,9 +27,10 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 			icon: (className?: string) => <IconClock className={className} />,
 		},
 	];
+	const courseUrl = url ? url : `/course/${data.slug}`;
 	return (
 		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl flex flex-col">
-			<Link href={`/course/${data.slug}`} className="block h-[180px] relative">
+			<Link href={courseUrl} className="block h-[180px] relative">
 				<Image
 					alt=""
 					src={data.image}
@@ -37,23 +46,22 @@ const CourseItem = ({ data }: { data: ICourse }) => {
 			</Link>
 			<div className="pt-4 flex flex-col flex-1">
 				<h3 className="font-bold text-lg mb-3">{data.title}</h3>
-				<div className="flex items-center gap-3 mb-5 text-xs text-gray-500 dark:text-grayDark">
-					{courseInfo.map((item, index) => (
-						<div className="flex items-center gap-2" key={index}>
-							{item.icon("size-4")}
-							<span>{item.title}</span>
-						</div>
-					))}
-					<span className="text-primary ml-auto text-base font-bold">
-						{data.sale_price.toLocaleString()}đ
-					</span>
+				<div className="mt-auto">
+					<div className="flex items-center gap-3 mb-0 text-xs text-gray-500 dark:text-grayDark">
+						{courseInfo.map((item, index) => (
+							<div className="flex items-center gap-2" key={index}>
+								{item.icon("size-4")}
+								<span>{item.title}</span>
+							</div>
+						))}
+						<span className="text-primary ml-auto text-base font-bold">
+							{data.sale_price.toLocaleString()}đ
+						</span>
+					</div>
+					<Link href={courseUrl} className={commonClassName.btnPrimary}>
+						{cta || "Xem chi tiết"}
+					</Link>
 				</div>
-				<Link
-					href={`/course/${data.slug}`}
-					className={commonClassName.btnPrimary}
-				>
-					Xem chi tiết
-				</Link>
 			</div>
 		</div>
 	);

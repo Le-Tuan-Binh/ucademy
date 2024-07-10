@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -91,7 +90,7 @@ function CourseAddNew({ user }: { user: IUser }) {
 								<FormLabel>Đường dẫn đến khóa học *</FormLabel>
 								<FormControl>
 									<Input
-										placeholder="Ví dụ: https://youtube.com/playlist?list=khoa-hoc-nextjs"
+										placeholder="Ví dụ: khoa-hoc-nextjs"
 										{...field}
 									/>
 								</FormControl>
