@@ -92,7 +92,7 @@ export const commonClassName = {
 	paginationButton:
 		"size-10 rounded-md borderDarkMode bgDarkMode border flex items-center justify-center hover:border-primary transition-all hover:text-primary",
 	btnPrimary:
-		"flex items-center justify-center w-full mt-10 rounded-lg text-white font-semibold bg-primary h-12 button-primary",
+		"flex items-center justify-center w-full mt-5 rounded-lg text-white font-semibold bg-primary h-12 button-primary",
 };
 export const editorOptions = (field: any, theme: any) => ({
 	initialValue: "",

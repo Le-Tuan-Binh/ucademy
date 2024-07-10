@@ -10,11 +10,11 @@ import { IconUser } from "../icons";
 const SideBar = () => {
 	const { userId } = useAuth();
 	return (
-		<div className="hidden p-5 bgDarkMode borderDarkMode lg:flex flex-col fixed top-0 left-0 bottom-0 w-[300px]">
-			<a href="/" className="font-bold text-3xl inline-block mb-5">
+		<div className="hidden p-5 border-r borderDarkMode bgDarkMode lg:flex flex-col fixed top-0 left-0 bottom-0 w-[300px]">
+			<Link href="/" className="font-bold text-3xl inline-block mb-5">
 				<span className="text-primary text-4xl">U</span>
 				cademy
-			</a>
+			</Link>
 			<ul className="flex flex-col gap-3">
 				{menuItems.map((item, index) => (
 					<MenuItem
