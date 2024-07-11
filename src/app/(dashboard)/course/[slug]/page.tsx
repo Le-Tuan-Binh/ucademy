@@ -1,4 +1,3 @@
-import PageNotFound from "@/app/not-found";
 import {
 	Accordion,
 	AccordionContent,
@@ -16,10 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { courseLevelTitle } from "@/constants";
 import { getCourseBySlug } from "@/lib/actions/course.actions";
-import { ECourseStatus } from "@/types/enums";
 import Image from "next/image";
 import React from "react";
 import LessonContent from "@/components/lesson/LessonContent";
+import PageNotFound from "@/app/not-found";
+import { ECourseStatus } from "@/types/enums";
 
 const page = async ({
 	params,
@@ -71,13 +71,21 @@ const page = async ({
 				<BoxSection title="Thông tin khóa học">
 					<div className="grid grid-cols-4 gap-5 mb-10">
 						<BoxInfo title="Bài học">75 bài giảng</BoxInfo>
-						<BoxInfo title="Lượt xem">{data.views.toLocaleString()}</BoxInfo>
-						<BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
+						<BoxInfo title="Lượt xem">
+							{data.views.toLocaleString()}
+						</BoxInfo>
+						<BoxInfo title="Trình độ">
+							{courseLevelTitle[data.level]}
+						</BoxInfo>
 						<BoxInfo title="Thời lượng">30h45ph</BoxInfo>
 					</div>
 				</BoxSection>
 				<BoxSection title="Nội dung của khóa học">
-					<LessonContent lectures={lectures} course="" slug=""></LessonContent>
+					<LessonContent
+						lectures={lectures}
+						course=""
+						slug=""
+					></LessonContent>
 				</BoxSection>
 				<BoxSection title="Yêu cầu của khóa học">
 					{data.info.requirements.map((requirement, index) => (
@@ -123,7 +131,9 @@ const page = async ({
 							-{Math.floor((data.sale_price / data.price) * 100)}%
 						</span>
 					</div>
-					<h3 className="text-base font-semibold mb-3">Khóa học gồm có:</h3>
+					<h3 className="text-base font-semibold mb-3">
+						Khóa học gồm có:
+					</h3>
 					<ul className="flex flex-col gap-3 text-sm text-slate-500 mb-5">
 						<li className="flex items-center gap-2">
 							<IconPlay className="size-4" />
