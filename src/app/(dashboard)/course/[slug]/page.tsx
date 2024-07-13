@@ -40,7 +40,7 @@ const page = async ({
 	const videoId = data.intro_url?.split("/").at(-1);
 	const lectures = data.lectures || [];
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr),400px] gap-8 items-start relative">
+		<div className="grid lg:grid-cols-[2fr,1fr] gap-10 min-h-screen">
 			<div>
 				<div className="relative aspect-video mb-5">
 					{data.intro_url ? (
@@ -69,7 +69,7 @@ const page = async ({
 					<div className="leading-normal">{data.desc}</div>
 				</BoxSection>
 				<BoxSection title="Thông tin khóa học">
-					<div className="grid grid-cols-4 gap-5 mb-10">
+					<div className="grid  grid-cols-2 sm:grid-cols-4 gap-5 mb-10">
 						<BoxInfo title="Bài học">75 bài giảng</BoxInfo>
 						<BoxInfo title="Lượt xem">
 							{data.views.toLocaleString()}
@@ -183,7 +183,7 @@ function BoxInfo({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="bg-white rounded-lg p-5">
+		<div className="bgDarkMode border borderDarkMode rounded-lg p-5">
 			<h4 className="text-sm text-slate-400 font-normal">{title}</h4>
 			<h3 className="font-bold">{children}</h3>
 		</div>

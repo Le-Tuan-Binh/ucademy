@@ -29,6 +29,7 @@ export async function getAllCourses(
 		if (status) {
 			query.status = status;
 		}
+
 		const courses = await Course.find(query)
 			.skip(skip)
 			.limit(limit)
@@ -84,6 +85,14 @@ export async function getCourseBySlug({
 		});
 		return findCourse;
 	} catch (error) {}
+}
+export async function countCourse() {
+	try {
+		const count = await Course.countDocuments();
+		return count;
+	} catch (error) {
+		console.error("Error counting documents:", error);
+	}
 }
 // Create - Update - Read - Delete
 export async function createCourse(params: TCreateCourseParams) {
