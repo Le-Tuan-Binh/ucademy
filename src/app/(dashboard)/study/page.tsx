@@ -1,9 +1,29 @@
 import Heading from "@/components/common/Heading";
-import { getUserCourses } from "@/lib/actions/user.actions";
+import { getUserCourses, getUserInfo } from "@/lib/actions/user.actions";
 import StudyCourses from "./StudyCourses";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { EUserRole } from "@/types/enums";
+import { getAllCoursesPublic } from "@/lib/actions/course.actions";
+import PageNotFound from "@/app/not-found";
 
 const page = async () => {
-	const courses = await getUserCourses();
+	const { userId } = auth();
+	if (!userId) {
+		return redirect("/sign-in");
+	}
+	// const courses = (await getUserCourses());
+	const user = await getUserInfo({ userId });
+	let courses;
+	if (user) {
+		if (user.role !== EUserRole.ADMIN) {
+			courses = (await getUserCourses()) || [];
+		} else {
+			courses = (await getAllCoursesPublic({})) || [];
+		}
+	} else {
+		return <PageNotFound />;
+	}
 	return (
 		<div>
 			<Heading>Khu vực học tập</Heading>
