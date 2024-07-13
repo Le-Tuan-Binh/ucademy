@@ -1,18 +1,18 @@
 import Heading from "@/components/common/Heading";
 import { getUserCourses, getUserInfo } from "@/lib/actions/user.actions";
 import StudyCourses from "./StudyCourses";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { EUserRole } from "@/types/enums";
-import { getAllCoursesPublic } from "@/lib/actions/course.actions";
 import PageNotFound from "@/app/not-found";
+import { getAllCoursesPublic } from "@/lib/actions/course.actions";
+import { EUserRole } from "@/types/enums";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
 const page = async () => {
+	// const courses = await getUserCourses();
 	const { userId } = auth();
 	if (!userId) {
 		return redirect("/sign-in");
 	}
-	// const courses = (await getUserCourses());
 	const user = await getUserInfo({ userId });
 	let courses;
 	if (user) {
