@@ -100,7 +100,9 @@ const page = async ({
 				<BoxSection title="Lợi ích sau khi hoàn thành khóa học">
 					{data.info.benefits.map((benefits, index) => (
 						<div key={index} className="mb-3 flex items-center gap-2">
-							<span className="flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center">
+							<span
+								className="flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center"
+							>
 								<IconCheck className="size-4"></IconCheck>
 							</span>
 							<span>{benefits}</span>
