@@ -35,23 +35,15 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "../ui/select";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { debounce } from "lodash";
+import useQueryString from "@/hooks/useQueryString";
 
 const CourseManage = ({ courses }: { courses: ICourse[] }) => {
 	const router = useRouter();
 	const pathName = usePathname();
-	const searchParams = useSearchParams();
-
-	const createQueryString = useCallback(
-		(name: string, value: string) => {
-			const params = new URLSearchParams(searchParams.toString());
-			params.set(name, value);
-			return params.toString();
-		},
-		[searchParams]
-	);
+	const { createQueryString } = useQueryString();
 	const handleDeleteCourse = (slug: string) => {
 		Swal.fire({
 			title: "Are you sure?",

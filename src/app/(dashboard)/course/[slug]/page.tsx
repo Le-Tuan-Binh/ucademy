@@ -12,7 +12,6 @@ import {
 	IconStudy,
 	IconUser,
 } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import { courseLevelTitle } from "@/constants";
 import { getCourseBySlug } from "@/lib/actions/course.actions";
 import Image from "next/image";
@@ -20,6 +19,9 @@ import React from "react";
 import LessonContent from "@/components/lesson/LessonContent";
 import PageNotFound from "@/app/not-found";
 import { ECourseStatus } from "@/types/enums";
+import { auth } from "@clerk/nextjs/server";
+import { getUserInfo } from "@/lib/actions/user.actions";
+import ButtonEnroll from "./ButtonEnroll";
 
 const page = async ({
 	params,
@@ -37,10 +39,13 @@ const page = async ({
 	if (data.status !== ECourseStatus.APPROVED) {
 		return <PageNotFound />;
 	}
+	const { userId } = auth();
+	const findUser = await getUserInfo({ userId: userId || "" });
 	const videoId = data.intro_url?.split("/").at(-1);
 	const lectures = data.lectures || [];
+	const handleBuyCourse = () => {};
 	return (
-		<div className="grid lg:grid-cols-[2fr,1fr] gap-10 min-h-screen">
+		<div className="grid lg:grid-cols-[1.75fr,1fr] gap-5 min-h-screen">
 			<div>
 				<div className="relative aspect-video mb-5">
 					{data.intro_url ? (
@@ -100,9 +105,7 @@ const page = async ({
 				<BoxSection title="Lợi ích sau khi hoàn thành khóa học">
 					{data.info.benefits.map((benefits, index) => (
 						<div key={index} className="mb-3 flex items-center gap-2">
-							<span
-								className="flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center"
-							>
+							<span className="flex-shrink-0 size-5 bg-primary text-white p-1 rounded flex items-center justify-center">
 								<IconCheck className="size-4"></IconCheck>
 							</span>
 							<span>{benefits}</span>
@@ -154,9 +157,11 @@ const page = async ({
 							<span>13 tài nguyên trong khóa học</span>
 						</li>
 					</ul>
-					<Button variant={"primary"} className="w-full">
-						Mua khóa học
-					</Button>
+					<ButtonEnroll
+						user={findUser ? JSON.parse(JSON.stringify(findUser)) : null}
+						courseId={data ? JSON.parse(JSON.stringify(data._id)) : null}
+						amount={data.sale_price}
+					></ButtonEnroll>
 				</div>
 			</div>
 		</div>
