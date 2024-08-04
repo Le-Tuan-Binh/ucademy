@@ -54,7 +54,7 @@ const OrderManage = ({ orders = [] }: { orders: IOrderManageProps[] }) => {
 				title: "Bạn có chắc muốn hủy đơn hàng không?",
 				icon: "warning",
 				showCancelButton: true,
-				confirmButtonText: "Hủy luôn",
+				confirmButtonText: "Hủy đơn hàng",
 				cancelButtonText: "Thoát",
 			}).then(async (result) => {
 				if (result.isConfirmed) {

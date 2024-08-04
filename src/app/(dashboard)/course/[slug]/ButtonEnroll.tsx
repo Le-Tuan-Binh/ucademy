@@ -27,6 +27,7 @@ const ButtonEnroll = ({
 			total: amount,
 			amount: amount,
 		});
+		toast.success("Yêu cầu mua khóa học thành công");
 	};
 	return (
 		<Button

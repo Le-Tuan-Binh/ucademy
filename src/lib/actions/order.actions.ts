@@ -67,7 +67,6 @@ export async function updateOrder({
 		if (!findOrder) return;
 		if (findOrder.status === EOrderStatus.CANCELED) return;
 		const findUser = await User.findById(findOrder.user._id);
-
 		await Order.findByIdAndUpdate(orderId, {
 			status,
 		});
