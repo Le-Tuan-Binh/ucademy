@@ -94,3 +94,17 @@ export async function updateOrder({
 		console.log(error);
 	}
 }
+export async function getOrderDetails({ code }: { code: string }) {
+	try {
+		connectToDatabase();
+		const order = await Order.findOne({
+			code: code,
+		}).populate({
+			path: "course",
+			select: "title",
+		});
+		return JSON.parse(JSON.stringify(order));
+	} catch (error) {
+		console.log(error);
+	}
+}
