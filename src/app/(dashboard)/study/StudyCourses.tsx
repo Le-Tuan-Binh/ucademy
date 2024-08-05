@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { CourseGrid } from "@/components/common";
 import CourseItem from "@/components/course/CourseItem";
 import { lastLessonKey } from "@/constants";
@@ -9,28 +10,49 @@ const StudyCourses = ({
 }: {
 	courses: ICourse[] | null | undefined;
 }) => {
-	if (!courses || courses.length <= 0) {
-		return null;
-	}
-	const lastLesson =
-		JSON.parse(localStorage?.getItem(lastLessonKey) || "[]") || [];
+	const [lastLesson, setLastLesson] = useState<any[]>([]);
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const storedLastLesson = JSON.parse(
+				localStorage.getItem(lastLessonKey) || "[]"
+			);
+			setLastLesson(storedLastLesson);
+		}
+	}, []);
+
+	if (!courses || courses.length <= 0) return null;
+
 	return (
 		<CourseGrid>
-			{courses &&
-				courses.length > 0 &&
-				courses?.map((item) => {
-					const url =
-						lastLesson.find((el: any) => el.course === item.slug)
-							?.lesson || "";
-					return (
-						<CourseItem
-							key={item.slug}
-							data={item}
-							cta="Tiếp tục học"
-							url={url}
-						></CourseItem>
-					);
-				})}
+			{courses.map((item) => {
+				const getLessonUrl = (lectures: any[]) => {
+					if (lectures && Array.isArray(lectures) && lectures.length > 0) {
+						const firstLecture = lectures[0];
+						if (
+							firstLecture &&
+							firstLecture.lessons &&
+							Array.isArray(firstLecture.lessons) &&
+							firstLecture.lessons.length > 0
+						) {
+							return firstLecture.lessons[0].slug;
+						}
+					}
+					return null;
+				};
+				const lessonSlug = getLessonUrl(item.lectures);
+				const url =
+					lastLesson.find((el) => el.course === item.slug)?.lesson ||
+					`/${item.slug}/lesson?slug=${lessonSlug}`;
+				return (
+					<CourseItem
+						key={item.slug}
+						data={item}
+						cta="Tiếp tục học"
+						url={url}
+					/>
+				);
+			})}
 		</CourseGrid>
 	);
 };

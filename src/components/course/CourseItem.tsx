@@ -34,13 +34,13 @@ const CourseItem = ({
 	];
 	const courseUrl = url ? url : `/course/${data.slug}`;
 	return (
-		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl flex flex-col relative">
-			<Link href={courseUrl} className="block h-[180px] relative group">
+		<div className="bg-white dark:bg-grayDarker dark:border-opacity-10 border border-gray-200 p-4 rounded-2xl flex flex-col">
+			<Link href={courseUrl} className="block h-[180px] relative">
 				<Image
 					src={data.image}
 					alt=""
-					width={800}
-					height={360}
+					width={300}
+					height={200}
 					className="w-full h-full object-cover rounded-lg"
 					sizes="@media (min-width: 640px) 300px, 100vw"
 					priority

@@ -27,7 +27,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { couponFormSchema, couponTypes } from "@/constants";
 import { createCoupon } from "@/lib/actions/coupon.actions";
-import { getAllCourses } from "@/lib/actions/course.actions";
 import { ECouponType } from "@/types/enums";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
@@ -35,6 +34,7 @@ import { debounce } from "lodash";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { getAllCourses } from "@/lib/actions/course.actions";
 
 const NewCouponForm = () => {
 	const [startDate, setStartDate] = useState<Date>();
@@ -93,8 +93,11 @@ const NewCouponForm = () => {
 		async (e: React.ChangeEvent<HTMLInputElement>) => {
 			const value = e.target.value;
 			const courseList = await getAllCourses({ search: value });
-			setFindCourse(courseList);
-			if (!value) setFindCourse([]);
+			console.log(courseList);
+			// setFindCourse(
+			// 	courseList ? JSON.parse(JSON.stringify(courseList)) : []
+			// );
+			// if (!value) setFindCourse([]);
 		},
 		250
 	);

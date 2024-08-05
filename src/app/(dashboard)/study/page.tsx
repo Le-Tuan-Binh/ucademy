@@ -5,12 +5,12 @@ import StudyCourses from "./StudyCourses";
 const page = async () => {
 	const courses = await getUserCourses();
 	return (
-		<div>
+		<>
 			<Heading>Khu vực học tập</Heading>
 			<StudyCourses
 				courses={courses ? JSON.parse(JSON.stringify(courses)) : []}
 			></StudyCourses>
-		</div>
+		</>
 	);
 };
 

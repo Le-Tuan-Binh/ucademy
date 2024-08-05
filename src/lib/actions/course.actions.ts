@@ -21,7 +21,6 @@ export async function getAllCourses(
 		connectToDatabase();
 		const { page = 1, limit = 10, search, status } = params;
 		const skip = (page - 1) * limit;
-		const {} = params;
 		const query: FilterQuery<typeof Course> = {};
 		if (search) {
 			query.$or = [{ title: { $regex: search, $options: "i" } }];
@@ -29,12 +28,11 @@ export async function getAllCourses(
 		if (status) {
 			query.status = status;
 		}
-
 		const courses = await Course.find(query)
 			.skip(skip)
 			.limit(limit)
 			.sort({ created_at: -1 });
-		return courses;
+		return JSON.parse(JSON.stringify(courses));
 	} catch (error) {
 		console.log(error);
 	}
