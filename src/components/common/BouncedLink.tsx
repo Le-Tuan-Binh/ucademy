@@ -7,7 +7,7 @@ const BouncedLink = ({ url }: { url: string }) => {
 			href={url}
 			className="size-10 rounded-full bg-primary flexCenter text-white fixed right-5 bottom-5 animate-bounce"
 		>
-			<IconPlus></IconPlus>
+			<IconPlus className="size-6"></IconPlus>
 		</Link>
 	);
 };

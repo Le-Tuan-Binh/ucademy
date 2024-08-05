@@ -1,6 +1,7 @@
 "use client";
 import { StatusBadge } from "@/components/common";
 import Heading from "@/components/common/Heading";
+import PaginationBtn from "@/components/common/PaginationBtn";
 import { IconCheck, IconDelete } from "@/components/icons";
 import { Input } from "@/components/ui/input";
 import {
@@ -199,6 +200,7 @@ const OrderManage = ({ orders = [] }: { orders: IOrderManageProps[] }) => {
 						})}
 				</TableBody>
 			</Table>
+			<PaginationBtn></PaginationBtn>
 		</div>
 	);
 };

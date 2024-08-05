@@ -1,4 +1,4 @@
-import { IconExplore } from "@/components/icons";
+import { IconCoupon, IconExplore } from "@/components/icons";
 import IconManageComment from "@/components/icons/IconComment";
 import IconManageOrder from "@/components/icons/IconOrder";
 import IconPlayCircle from "@/components/icons/IconPlay";
@@ -43,6 +43,11 @@ export const menuItems: TMenuItem[] = [
 		url: "/manage/comment",
 		title: "Quản lý bình luận",
 		icon: <IconManageComment className="size-5" />,
+	},
+	{
+		url: "/manage/coupon",
+		title: "Quản lý coupon",
+		icon: <IconCoupon className="size-5" />,
 	},
 ];
 

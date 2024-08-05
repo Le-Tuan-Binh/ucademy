@@ -1,6 +1,7 @@
 import { fetchOrders } from "@/lib/actions/order.actions";
 import OrderManage from "./OrderManage";
 import { EOrderStatus } from "@/types/enums";
+import PaginationBtn from "@/components/common/PaginationBtn";
 
 const page = async ({
 	searchParams,
@@ -22,6 +23,7 @@ const page = async ({
 			<OrderManage
 				orders={orders ? JSON.parse(JSON.stringify(orders)) : []}
 			></OrderManage>
+			
 		</div>
 	);
 };
