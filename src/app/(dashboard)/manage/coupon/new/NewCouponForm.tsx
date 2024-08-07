@@ -94,10 +94,6 @@ const NewCouponForm = () => {
 			const value = e.target.value;
 			const courseList = await getAllCourses({ search: value });
 			console.log(courseList);
-			// setFindCourse(
-			// 	courseList ? JSON.parse(JSON.stringify(courseList)) : []
-			// );
-			// if (!value) setFindCourse([]);
 		},
 		250
 	);

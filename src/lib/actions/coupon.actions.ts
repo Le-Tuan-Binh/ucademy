@@ -16,7 +16,7 @@ export async function createCoupon(params: TCreateCouponParams) {
 		if (existingCoupon?.code) {
 			return { error: "Mã giảm giá đã tồn tại!" };
 		}
-		const couponRegex = /^[A-Z0-9]{3,10}$/;
+		const couponRegex = /^[A-Z0-9]{3,20}$/;
 		if (!couponRegex.test(params.code)) {
 			return { error: "Mã giảm giá không hợp lệ" };
 		}

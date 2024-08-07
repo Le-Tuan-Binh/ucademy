@@ -188,7 +188,7 @@ export const couponFormSchema = z.object({
 			message: "Mã giảm giá không được để trống",
 		})
 		.min(3, "Mã giảm giá phải có ít nhất 3 ký tự")
-		.max(10, "Mã giảm giá không được quá 10 ký tự"),
+		.max(20, "Mã giảm giá không được quá 20 ký tự"),
 	start_date: z.string().optional(),
 	end_date: z.string().optional(),
 	active: z.boolean().optional(),
